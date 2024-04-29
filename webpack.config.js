@@ -62,7 +62,7 @@ const config = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css', // Génère les fichiers CSS dans le dossier "css"
+      filename: 'styles/[name].css', // Génère les fichiers CSS dans le dossier "css"
     }),
   ].concat(htmlPlugins),
   module: {
