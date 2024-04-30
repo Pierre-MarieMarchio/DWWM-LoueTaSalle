@@ -1,15 +1,18 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 DWWM LoueTaSalle!
 
-This project has been created using **webpack-cli**, you can now run
+## Setup application
 
-```
-npm run build
-```
+Install dependencies with:
 
-or
+`npm install`
 
-```
-yarn build
-```
+## Development
 
-to bundle your application
+To run development server locally on http://localhost:8080/html:
+`npm run serve`
+
+To build : 
+`npm run build:dev`
+
+
+## enjoy yopur life!
