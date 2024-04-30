@@ -6,5 +6,5 @@
     "target": "es5",
     "allowJs": true
   },
-  "files": ["src/app.ts"]
+  "files": ["src/main.ts"]
 }

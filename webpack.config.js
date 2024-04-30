@@ -48,7 +48,7 @@ htmlPages.forEach(({ chunks, template }) => {
 
 const config = {
   entry: {
-    main: './src/app.ts',
+    main: './src/main.ts',
     ...scssEntries,
   },
   output: {
