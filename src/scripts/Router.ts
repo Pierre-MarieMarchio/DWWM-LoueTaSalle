@@ -1,6 +1,11 @@
 import App from "./App";
+
+// Screen Import
+
 import HomeScreen from "./view/screen/HomeScreen";
 import ContactScreen from "./view/screen/ContactScreen";
+import ReservationScreen from "./view/screen/ReservationScreen";
+import PlacesScreen from "./view/screen/PlacesScreen";
 
 export default class Router {
   private _screen: any = null;
@@ -30,11 +35,11 @@ export default class Router {
     if (location.pathname === "/") {
       this._screen = new HomeScreen();
     } else if (location.pathname === "/lieux") {
-      this._screen = new HomeScreen();
+      this._screen = new PlacesScreen();
     } else if (location.pathname === "/contact") {
       this._screen = new ContactScreen();
     } else if (location.pathname === "/reservation") {
-      this._screen = new HomeScreen();
+      this._screen = new ReservationScreen();
     } else {
       this._screen = new HomeScreen();
     }
