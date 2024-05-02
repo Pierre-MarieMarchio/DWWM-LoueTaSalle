@@ -25,6 +25,5 @@ export default class App {
 
     page.firstElementChild?.remove();
     page.append(this.router.screen);
-    
   }
 }
