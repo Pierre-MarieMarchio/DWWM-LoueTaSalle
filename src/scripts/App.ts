@@ -23,8 +23,8 @@ export default class App {
   render() {
     const page = document.getElementById("app") as HTMLElement;
 
-    page.firstElementChild.remove();
-    // page.append(this.router.screen);
-    page.innerHTML = this.router.screen;
+    page.firstElementChild?.remove();
+    page.append(this.router.screen);
+    
   }
 }

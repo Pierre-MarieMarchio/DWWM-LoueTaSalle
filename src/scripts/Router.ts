@@ -27,7 +27,7 @@ export default class Router {
     const page = document.getElementById("app") as HTMLElement;
 
     if (location.pathname === "/") {
-      this._screen = `<home-screen/>`;
+      this._screen = new HomeScreen();
     } else if (location.pathname === "/lieux") {
       this._screen = new HomeScreen();
     } else if (location.pathname === "/contact") {
