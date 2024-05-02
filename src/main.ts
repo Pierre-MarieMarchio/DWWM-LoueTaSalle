@@ -1,7 +1,7 @@
 import "../src/pages/scss/main.scss";
 import * as bootstrap from "bootstrap";
 
-import App from "./scripts/view/App";
+import App from "./scripts/App";
 
 const app = new App();
 
