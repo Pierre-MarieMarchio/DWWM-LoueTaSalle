@@ -1,4 +1,4 @@
-export default class Place extends HTMLElement {
+export default class CustumerReviewList extends HTMLElement {
     constructor() {
         super();
 
@@ -90,4 +90,4 @@ export default class Place extends HTMLElement {
     }
 }
 
-customElements.define("place", Place);
+customElements.define("custumer-review-list", CustumerReviewList);
