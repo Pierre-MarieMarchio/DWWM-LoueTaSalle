@@ -16,4 +16,4 @@ export default class PlacesScreen extends HTMLElement {
 }
 
 
-customElements.define("place-screen", PlacesScreen);
+customElements.define("places-screen", PlacesScreen);
