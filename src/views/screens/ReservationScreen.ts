@@ -16,11 +16,9 @@ export default class ReservationScreen extends HTMLElement {
     this._props.header = new HeaderComponent();
     console.log("Header affiché ?");
 
-    this._props = {};
     this._props.suggestion = new SuggestionComponent();
     console.log("Suggestion affiché ?");
 
-    this._props = {};
     this._props.footer = new FooterComponent();
     console.log("Footer affiché ?");
 
