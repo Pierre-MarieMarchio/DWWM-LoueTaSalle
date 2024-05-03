@@ -1,19 +1,30 @@
+import HeaderComponent from "../components/common/HeaderComponent";
+import FooterComponent from "../components/common/FooterComponent";
+
 export default class PlacesScreen extends HTMLElement {
-    constructor() {
-        super();
 
-        this.innerHTML = this.render();
-    }
+    private _props: any;
 
-    render(): string {
-        return `
+  constructor() {
+    super();
+
+    this._props = {};
+    this._props.header = new HeaderComponent();
+    this._props.footer = new FooterComponent();
+
+    this.innerHTML = this.render();
+  }
+
+  render(): string {
+    return `
         <div>
-        ${this.constructor.name}
+          <header-component/>
+        </div>
+        <div>
+          <footer-component/>
         </div>
         `;
-    }
-
+  }
 }
-
 
 customElements.define("places-screen", PlacesScreen);
