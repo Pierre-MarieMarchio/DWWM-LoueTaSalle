@@ -1,15 +1,15 @@
-export default class Suggestion extends HTMLElement {
-    constructor() {
-      super();
-  
-      this.innerHTML = this.render();
-    }
-  
-    render(): string {
-      return `
-      <section class="">
+export default class SuggestionComponent extends HTMLElement {
+  constructor() {
+    super();
+
+    this.innerHTML = this.render();
+  }
+
+  render(): string {
+    return `
+    <div class="my-5 py-3">
       <h3 class="text-center my-3">Nos suggestions</h3>
-      <div class="flex row row-cols-1 row-cols-md-3">
+      <div class="flex row row-cols-1 row-cols-md-3 my-4">
         <div class="col">
           <div class="card m-2">
             <img src="../assets/img/place-holder.webp" class="card-img-top" alt="..." />
@@ -62,9 +62,9 @@ export default class Suggestion extends HTMLElement {
             </div>
         </div>
       </div>
-    </section>
+    </div>
             `;
-    }
   }
-  
-  customElements.define("suggestion", Suggestion);
+}
+
+customElements.define("suggestion-component", SuggestionComponent);
