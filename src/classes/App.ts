@@ -1,4 +1,4 @@
-import Router from "./Router";
+import Router from "../Router";
 
 export default class App {
   private static _instance: any = null;
