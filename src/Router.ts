@@ -2,11 +2,11 @@ import App from "./classes/App";
 
 // Screen Import
 
-import HomeScreen from "./views/screen/HomeScreen";
-import ContactScreen from "./views/screen/ContactScreen";
-import ReservationScreen from "./views/screen/ReservationScreen";
-import PlacesScreen from "./views/screen/PlacesScreen";
-import PlaceScreen from "./views/screen/PlaceScreen";
+import HomeScreen from "./views/screens/HomeScreen";
+import ContactScreen from "./views/screens/ContactScreen";
+import ReservationScreen from "./views/screens/ReservationScreen";
+import PlacesScreen from "./views/screens/PlacesScreen";
+import PlaceScreen from "./views/screens/PlaceScreen";
 
 export default class Router {
   private _screen: any = null;
