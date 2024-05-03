@@ -1,5 +1,6 @@
 import HeaderComponent from "../components/common/HeaderComponent";
 import FooterComponent from "../components/common/FooterComponent";
+import SuggestionComponent from "../components/common/SuggestionComponent";
 
 export default class ResevationScreen extends HTMLElement {
   private _props: any;
