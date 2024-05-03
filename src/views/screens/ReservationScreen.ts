@@ -10,6 +10,8 @@ export default class ResevationScreen extends HTMLElement {
     this._props = {};
     this._props.header = new HeaderComponent();
     this._props.footer = new FooterComponent();
+    this._props.suggestion = new SuggestionComponent();
+
 
     this.innerHTML = this.render();
   }
@@ -17,6 +19,7 @@ export default class ResevationScreen extends HTMLElement {
   render(): string {
     return `
     <div>
+
      <header-component/>
     </div>
     <div>
@@ -25,4 +28,5 @@ export default class ResevationScreen extends HTMLElement {
     `;
   }
 }
+
 customElements.define("resevation-screen", ResevationScreen);
