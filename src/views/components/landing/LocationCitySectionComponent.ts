@@ -1,13 +1,12 @@
 export default class LocationCitySectionComponent extends HTMLElement {
+  constructor() {
+    super();
 
-    constructor() {
-        super();
+    this.innerHTML = this.render();
+  }
 
-        this.innerHTML = this.render();
-    }
-
-    render(): string {
-        return `
+  render(): string {
+    return `
         <div class="my-5 py-3">
         <h3 class="text-center my-3">Location de salle par ville</h3>
         <div class="flex row row-cols-2 row-cols-md-3 row-cols-lg-6 g-2 g-lg-3 my-4">
@@ -80,7 +79,7 @@ export default class LocationCitySectionComponent extends HTMLElement {
         </div>
       </div>
         `;
-    }
+  }
 }
 
 customElements.define("location-city-section-component", LocationCitySectionComponent);
