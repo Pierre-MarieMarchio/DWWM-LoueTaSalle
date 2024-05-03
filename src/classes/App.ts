@@ -23,7 +23,12 @@ export default class App {
   render() {
     const page = document.getElementById("app") as HTMLElement;
 
-    page.firstElementChild?.remove();
-    page.append(this.router.screen);
+    if (page) {
+      page.firstElementChild?.remove();
+      page.append(this.router.screen);
+    } else {
+      
+    console.log('Page is null');
+    }
   }
 }

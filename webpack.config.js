@@ -1,7 +1,7 @@
 const path = require("path");
+const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const autoprefixer = require('autoprefixer');
 
 const isProduction = process.env.NODE_ENV == "production";
 
@@ -14,15 +14,13 @@ const config = {
     path: path.resolve(__dirname, "public"),
   },
   devServer: {
-    static: path.resolve(__dirname, "public"),
-    open: true,
-    host: "localhost",
+    static: path.resolve(__dirname, 'public'),
     port: 8080,
     hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "src/index.html",
     }),
 
     new MiniCssExtractPlugin(),
