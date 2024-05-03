@@ -1,5 +1,5 @@
 const path = require("path");
-const autoprefixer = require('autoprefixer')
+const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -12,9 +12,10 @@ const config = {
   entry: "./src/main.ts",
   output: {
     path: path.resolve(__dirname, "public"),
+    publicPath: "/",
   },
   devServer: {
-    static: path.resolve(__dirname, 'public'),
+    static: path.resolve(__dirname, "public"),
     port: 8080,
     hot: true,
   },
