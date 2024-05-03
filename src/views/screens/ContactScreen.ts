@@ -15,11 +15,9 @@ export default class ContactScreen extends HTMLElement {
     this._props.header = new HeaderComponent();
     console.log("header affiché ?");
 
-    this._props = {};
     this._props.suggestion = new Suggestion();
     console.log("suggestion affiché ?");
 
-    this._props = {};
     this._props.footer = new FooterComponent();
     console.log("footer affiché ?");
 
