@@ -1,12 +1,13 @@
-export default class SearchBar extends HTMLElement {
-    constructor() {
-        super();
+export default class SearchBarComponent extends HTMLElement {
+  constructor() {
+    super();
 
-        this.innerHTML = this.render();
-    }
+    this.innerHTML = this.render();
+  }
 
-    render(): string {
-        return `
+  render(): string {
+    return `
+    <div class="my-5 py-3">
       <form class="d-flex my-2 my-lg-0">
       <div class="form-group flex-fill mr-2">
         <label for="eventType" class="sr-only">Type d'événement</label>
@@ -37,8 +38,11 @@ export default class SearchBar extends HTMLElement {
       </div>
       <button type="submit" class="btn btn-primary ml-2">Rechercher</button>
     </form>
+    </div>
+    
+    
             `;
-    }
+  }
 }
 
-customElements.define("search-bar", SearchBar);
+customElements.define("search-bar-component", SearchBarComponent);
