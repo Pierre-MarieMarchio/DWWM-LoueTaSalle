@@ -29,19 +29,19 @@ export default class HeaderComponent extends HTMLElement {
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" target="SPA" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-light" href="/accueil">Accueil</a>
+            <a class="nav-link text-light" target="SPA" href="/">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="/lieux">Nos lieux</a>
+            <a class="nav-link text-light" target="SPA" href="/lieux">Nos lieux</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="/reservation">Réservation</a>
+            <a class="nav-link text-light" target="SPA" href="/reservation">Réservation</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="/contact">Contact</a>
+            <a class="nav-link text-light" target="SPA" href="/contact">Contact</a>
           </li>
         </ul>
       </div>

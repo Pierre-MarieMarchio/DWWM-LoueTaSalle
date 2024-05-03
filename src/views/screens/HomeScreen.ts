@@ -1,27 +1,64 @@
 import HeaderComponent from "../components/common/HeaderComponent";
 import FooterComponent from "../components/common/FooterComponent";
+import SearchBarComponent from "../components/landing/SearchBarComponent";
+import SuggestionComponent from "../components/common/SuggestionComponent";
+import TypeSectionComponent from "../components/landing/TypeSectionComponent";
+import LocationSectionComponent from "../components/landing/LocationSectionComponent";
+import LocationCitySectionComponent from "../components/landing/LocationCitySectionComponent";
+
 
 export default class HomeScreen extends HTMLElement {
   private _props: any;
 
   constructor() {
     super();
-    console.log("ici 1");
 
     this._props = {};
     this._props.header = new HeaderComponent();
-
-    console.log("ici 2");
+    this._props.footer = new FooterComponent();
+    this._props.searchBar = new SearchBarComponent();
+    this._props.suggestion = new SuggestionComponent();
+    this._props.typeSection = new TypeSectionComponent();
+    this._props.locationSection = new LocationSectionComponent();
+    this._props.locationCitySection = new LocationCitySectionComponent();
 
     this.innerHTML = this.render();
   }
 
   render(): string {
     return `
-          <div>
+        <div>
           <header-component/>
-          </div>
-        
+        </div>
+
+        <main class="container my-5">
+
+          <section class="my-5">
+            <search-bar-component />
+          </section>  
+
+          <section class="my-5">
+          <suggestion-component/>
+          </section>
+
+          <section class="my-5">
+          <type-section-component/>
+          </section>
+
+          <section class="my-5">
+          <location-section-component/>
+          </section>
+
+          <section class="my-5">
+          <location-city-section-component/>
+          </section>
+            
+          
+        </main>
+
+        <div>
+          <footer-component/>
+        </div>
         `;
   }
 }
