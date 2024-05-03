@@ -1,7 +1,6 @@
-import "../src/pages/scss/main.scss";
+import "../src/views/scss/main.scss";
 import * as bootstrap from "bootstrap";
 
-import App from "./scripts/App";
+import App from "./classes/App";
 
 const app = new App();
-

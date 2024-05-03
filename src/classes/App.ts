@@ -1,4 +1,4 @@
-import Router from "./Router";
+import Router from "../Router";
 
 export default class App {
   private static _instance: any = null;
@@ -23,7 +23,12 @@ export default class App {
   render() {
     const page = document.getElementById("app") as HTMLElement;
 
-    page.firstElementChild?.remove();
-    page.append(this.router.screen);
+    if (page) {
+      page.firstElementChild?.remove();
+      page.append(this.router.screen);
+    } else {
+      
+    console.log('Page is null');
+    }
   }
 }
