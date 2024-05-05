@@ -1,12 +1,12 @@
 export default class FooterComponent extends HTMLElement {
-    constructor() {
-      super();
-  
-      this.innerHTML = this.render();
-    }
-  
-    render(): string {
-      return `
+  constructor() {
+    super();
+
+    this.innerHTML = this.render();
+  }
+
+  render(): string {
+    return `
       <div class="row justify-content-between">
 
       <!-- Nav -->
@@ -63,7 +63,7 @@ export default class FooterComponent extends HTMLElement {
       </div>
   </div>
             `;
-    }
   }
-  
-  customElements.define("footer-component", FooterComponent);
+}
+
+customElements.define("footer-component", FooterComponent);
