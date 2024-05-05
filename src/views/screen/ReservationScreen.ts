@@ -8,7 +8,13 @@ export default class ResevationScreen extends HTMLElement {
   render(): string {
     return `
     <div>
-    ${this.constructor.name}
+    <header-component/>
+    </div>
+    <div>
+      <formReservation-Component/>
+    </div>
+    <div>
+    <footer-component/>
     </div>
     `;
   }

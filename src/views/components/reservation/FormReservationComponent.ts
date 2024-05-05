@@ -1,0 +1,233 @@
+export default class FormReservation extends HTMLElement {
+  constructor() {
+    super();
+
+    this.innerHTML = this.render();
+  }
+
+  render(): string {
+    return `
+    <div class="container">
+    <form>
+      <fieldset desabled>
+        <legend class="mt-3">Vos coordonnées</legend>
+        <div>Déja inscrit ? Cliquez ici pour vous connecter !</div>
+        <div class="row">
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="Nom *"
+            />
+          </div>
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="Adresse email *"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="Prénom *"
+            />
+          </div>
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="06 00 00 00 00"
+            />
+          </div>
+        </div>
+        <legend>Votre événement</legend>
+        <div>
+          Décrivez nous votre demande puis sélectionnez les types de
+          prestataires que vous recherchez
+        </div>
+        <div class="col mb-3">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Nature de votre événement</option>
+            <option value="1">Afterwork</option>
+            <option value="2">Babyshower</option>
+            <option value="3">Anniversaire</option>
+            <option value="4">Mariage</option>
+            <option value="5">Brunch</option>
+            <option value="6">Cocktail</option>
+            <option value="7">Fete de Noel</option>
+            <option value="8">Conférence</option>
+            <option value="9">Cowerking</option>
+            <option value="10">Exposition</option>
+            <option value="11">Formation</option>
+            <option value="12">Séminaire</option>
+            <option value="13">Vente aux enchères</option>
+            <option value="14">Brunch</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="Date de votre événement *"
+            />
+          </div>
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="Heure de début *"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Département de recherche *</option>
+              <option value="1">Ain</option>
+              <option value="2">Nord</option>
+              <option value="3">Paris</option>
+            </select>
+          </div>
+          <div class="col mb-3">
+            <input
+              type="text"
+              id="disabledTextInput"
+              class="form-control"
+              placeholder="Nombre de participants *"
+            />
+          </div>
+        </div>
+        <div class="col mb-3">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Moyenne d'âge *</option>
+            <option value="1">--</option>
+            <option value="2">18-20</option>
+            <option value="3">20-25</option>
+            <option value="3">25-30</option>
+            <option value="3">30-35</option>
+            <option value="3">35-40</option>
+            <option value="3">40-45</option>
+            <option value="3">45-50</option>
+            <option value="3">+ de 50</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="col mb-3">
+              <input
+                type="text"
+                id="disabledTextInput"
+                class="form-control"
+                placeholder="Ville(s) préférée(s)"
+              />
+            </div>
+            <div class="col mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Type de lieux</option>
+                <option value="1">Hôtel 2**</option>
+                <option value="2">Hôtel 3***</option>
+                <option value="3">Hôtel 4****</option>
+                <option value="3">Hôtel 5*****</option>
+                <option value="3">Restaurant</option>
+                <option value="3">Salle de réception</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Configuration *</option>
+                <option value="1">Indifférent</option>
+                <option value="2">Banquet</option>
+                <option value="3">Cocktail</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Besoin d'un traiteur ? *</option>
+                <option value="1">Oui</option>
+                <option value="2">Non</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Combien de devis souhaitez-vous ?</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="2">3</option>
+                <option value="2">4</option>
+                <option value="2">5</option>
+              </select>
+            </div>
+            <div class="col mb-3">
+              <input
+                type="text"
+                id="disabledTextInput"
+                class="form-control"
+                placeholder="Budget global estimé €"
+              />
+            </div>
+            <div class="col mb-3">
+              <div class="row">
+                <div class="col">
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Hébergement</option>
+                    <option value="1">Non</option>
+                    <option value="2">Oui</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    id="disabledTextInput"
+                    class="form-control"
+                    placeholder="Nombre de couchages..."
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex align-items-stretch">
+            <textarea
+              class="form-control"
+              id="validationTextarea"
+              placeholder="Détail de votre demande"
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="exampleCheck1"
+          />
+          <label class="form-check-label" for="exampleCheck1"
+            >J’accepte les conditions générales d'utilisation</label
+          >
+        </div>
+        <div class="d-flex justify-content-center mb-3">
+          <button type="submit" class="btn btn-primary">
+            Envoyer ma demande
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+            `;
+  }
+}
+
+customElements.define("formReservation-Component", FormReservation);
