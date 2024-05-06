@@ -5,6 +5,7 @@ import SuggestionComponent from "../components/common/SuggestionComponent";
 import TypeSectionComponent from "../components/landing/TypeSectionComponent";
 import LocationSectionComponent from "../components/landing/LocationSectionComponent";
 import LocationCitySectionComponent from "../components/landing/LocationCitySectionComponent";
+import TestimonialsCarouselComponent from "../components/landing/TestimonialsCarouselComponent";
 
 
 export default class HomeScreen extends HTMLElement {
@@ -21,6 +22,7 @@ export default class HomeScreen extends HTMLElement {
     this._props.typeSection = new TypeSectionComponent();
     this._props.locationSection = new LocationSectionComponent();
     this._props.locationCitySection = new LocationCitySectionComponent();
+    this._props.testimonialsCarousel = new TestimonialsCarouselComponent();
 
     this.innerHTML = this.render();
   }
@@ -52,6 +54,8 @@ export default class HomeScreen extends HTMLElement {
           <section class="my-5">
           <location-city-section-component/>
           </section>
+
+          <testimonials-carousel-component/>
             
           
         </main>
