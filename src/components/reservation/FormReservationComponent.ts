@@ -1,11 +1,8 @@
-export default class FormReservation extends HTMLElement {
-  constructor() {
-    super();
+import Components from "../../classes/Components";
 
-    this.innerHTML = this.render();
-  }
-
-  render(): string {
+export default class FormReservation extends Components {
+  
+  protected override render(): string {
     return `
     <div class="container">
     <form>

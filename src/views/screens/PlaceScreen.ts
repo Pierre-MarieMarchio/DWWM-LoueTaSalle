@@ -1,21 +1,11 @@
-import HeaderComponent from "../components/common/HeaderComponent";
-import FooterComponent from "../components/common/FooterComponent";
+import Screen from "../../classes/Screen";
 
-export default class PlaceScreen extends HTMLElement {
-
-  private _props: any
-
+export default class PlaceScreen extends Screen {
   constructor() {
     super();
-
-    this._props = {};
-    this._props.header = new HeaderComponent();
-    this._props.footer = new FooterComponent();
-
-    this.innerHTML = this.render();
   }
 
-  render(): string {
+  protected override render(): string {
     return `
         <div>
           <header-component/>

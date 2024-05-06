@@ -1,12 +1,8 @@
-export default class CustumerReviewList extends HTMLElement {
-    constructor() {
-        super();
+import Components from "../../classes/Components";
 
-        this.innerHTML = this.render();
-    }
-
-    render(): string {
-        return `
+export default class CustumerReviewList extends Components {
+  protected override render(): string {
+    return `
         <section class="custumer-review-list-component">
         <div class="row">
           <div class="col-12">
@@ -99,7 +95,7 @@ export default class CustumerReviewList extends HTMLElement {
         </div>
       </section>
             `;
-    }
+  }
 }
 
 customElements.define("custumer-review-list", CustumerReviewList);
