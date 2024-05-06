@@ -1,4 +1,4 @@
-import FormContactComponent from "../components/contact/FormContactComponent";
+import FormContactComponent from "../../components/contact/FormContactComponent";
 import Screen from "../../classes/Screen";
 
 export default class ContactScreen extends Screen {

@@ -1,6 +1,6 @@
-import HeaderComponent from "../views/components/common/HeaderComponent";
-import Suggestion from "../views/components/common/SuggestionComponent";
-import FooterComponent from "../views/components/common/FooterComponent";
+import HeaderComponent from "../components/common/HeaderComponent";
+import Suggestion from "../components/common/SuggestionComponent";
+import FooterComponent from "../components/common/FooterComponent";
 
 export default class Screen extends HTMLElement {
 
