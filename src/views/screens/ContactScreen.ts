@@ -24,7 +24,7 @@ export default class ContactScreen extends HTMLElement {
           <header-component/>
           </div>
           <div>
-          <formContact-Component/>
+          <formcontact-component/>
           </div>
           <div>
           <footer-component/>

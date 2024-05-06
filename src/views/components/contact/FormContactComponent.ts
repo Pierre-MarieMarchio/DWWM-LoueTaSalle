@@ -91,4 +91,4 @@ export default class FormContactComponent extends HTMLElement {
   }
 }
 
-customElements.define("formContact-Component", FormContactComponent);
+customElements.define("formcontact-component", FormContactComponent);
