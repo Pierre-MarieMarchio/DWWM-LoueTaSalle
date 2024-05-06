@@ -1,0 +1,27 @@
+
+//----------------------------------*\
+// BOOTSTRAP
+//----------------------------------*/
+
+
+@import "bootstrap/scss/bootstrap";
+
+
+//----------------------------------*\
+// VARIABLES
+//----------------------------------*/
+
+
+
+//----------------------------------*\
+// PAGES
+//----------------------------------*/
+
+@import "./scss.Screens/landingScreen.scss";
+
+//----------------------------------*\
+// COMPONENTS
+//----------------------------------*/
+
+@import "./scss.Components/header.scss";
+@import "./scss.Components/testimonialsCarousel.scss";

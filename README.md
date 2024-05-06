@@ -8,11 +8,11 @@ Install dependencies with:
 
 ## Development
 
-To run development server locally on http://localhost:8080/html:
+To run development server locally on http://localhost:8080:
 `npm run serve`
 
 To build : 
 `npm run build:dev`
 
 
-## enjoy yopur life!
+## enjoy your life!

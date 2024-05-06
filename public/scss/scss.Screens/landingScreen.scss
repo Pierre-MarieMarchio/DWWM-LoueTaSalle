@@ -1,0 +1,24 @@
+.square-card {
+  width: 100%;
+  padding-top: 100%; /* Ceci maintient le ratio 1:1 */
+  position: relative;
+}
+.square-card .card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(235, 186, 233);
+}
+
+.square-card .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.square-card .card-body i {
+  font-size: 600%; /* Taille de l'icône en pourcentage de la taille de la carte */
+}
