@@ -10,7 +10,7 @@ export default class FormContactComponent extends HTMLElement {
     <div class="container">
       <form>
         <fieldset desabled>
-          <legend>Formulaire de contact</legend>
+          <legend bg-primary>Formulaire de contact</legend>
           <div class="row">
             <div class="col">
               <div class="col mb-3">
