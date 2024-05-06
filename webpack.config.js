@@ -12,17 +12,17 @@ const config = {
   mode: "development",
   entry: "./src/main.ts",
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "dist"),
     publicPath: "/assets/",
   },
   devServer: {
-    static: path.resolve(__dirname, "public"),
+    static: path.resolve(__dirname, "dist"),
     port: 8080,
     hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: "public/index.html",
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
@@ -31,7 +31,7 @@ const config = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets', to: 'assets' },
+        { from: 'public/assets', to: 'assets' },
       ],
     }),
 
