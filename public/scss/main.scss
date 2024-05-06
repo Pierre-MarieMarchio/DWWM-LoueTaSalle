@@ -1,12 +1,15 @@
 //----------------------------------*\
-// BOOTSTRAP
-//----------------------------------*/
-@import "./customVariables.scss";
-@import "bootstrap/scss/bootstrap";
-
-//----------------------------------*\
 // VARIABLES
 //----------------------------------*/
+
+@import "./customVariables.scss";
+
+//----------------------------------*\
+// BOOTSTRAP
+//----------------------------------*/
+
+@import "bootstrap/scss/bootstrap";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
 
 //----------------------------------*\
 // PAGES

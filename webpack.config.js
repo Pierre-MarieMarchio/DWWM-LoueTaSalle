@@ -2,7 +2,7 @@ const path = require("path");
 const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
@@ -30,13 +30,10 @@ const config = {
       },
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'public/assets', to: 'assets' },
-      ],
+      patterns: [{ from: "public/assets", to: "assets" }],
     }),
 
     new MiniCssExtractPlugin(),
-
   ],
   module: {
     rules: [
@@ -50,8 +47,36 @@ const config = {
         use: [stylesHandler, "css-loader"],
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+        test: /\.s?css$/,
+        use: [
+          // Save the CSS as a separate file to allow caching
+          MiniCssExtractPlugin.loader,
+          {
+            // Translate CSS into CommonJS modules
+            loader: "css-loader",
+          },
+          {
+            // Run postcss actions
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  function () {
+                    return [require("autoprefixer")];
+                  },
+                ],
+              },
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                outputStyle: "compressed",
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -60,7 +85,14 @@ const config = {
           filename: "assets/[name][ext]",
         },
       },
-
+      {
+        test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/i,
+        type: "asset/resource",
+        generator: {
+          //filename: 'fonts/[name]-[hash][ext][query]'
+          filename: "fonts/[name][ext][query]",
+        },
+      },
     ],
   },
   resolve: {
