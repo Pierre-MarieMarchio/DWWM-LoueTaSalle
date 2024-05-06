@@ -230,4 +230,4 @@ export default class FormReservation extends HTMLElement {
   }
 }
 
-customElements.define("formReservation-Component", FormReservation);
+customElements.define("formreservation-component", FormReservation);
