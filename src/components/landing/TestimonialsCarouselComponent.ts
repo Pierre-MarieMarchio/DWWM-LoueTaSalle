@@ -1,11 +1,7 @@
-export default class TestimonialsCarouselComponent extends HTMLElement {
-  constructor() {
-    super();
+import Components from "../../classes/Components";
 
-    this.innerHTML = this.render();
-  }
-
-  render(): string {
+export default class TestimonialsCarouselComponent extends Components {
+  protected override render(): string {
     return `
     <section class="" id="testimonials">
     <div id="carousel-Testimonials" class="carousel slide">
@@ -58,4 +54,4 @@ export default class TestimonialsCarouselComponent extends HTMLElement {
   }
 }
 
-customElements.define('testimonials-carousel-component', TestimonialsCarouselComponent)
+customElements.define("testimonials-carousel-component", TestimonialsCarouselComponent);

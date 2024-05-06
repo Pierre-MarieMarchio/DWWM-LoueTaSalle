@@ -1,11 +1,7 @@
-export default class LocationCitySectionComponent extends HTMLElement {
-  constructor() {
-    super();
+import Components from "../../classes/Components";
 
-    this.innerHTML = this.render();
-  }
-
-  render(): string {
+export default class LocationCitySectionComponent extends Components {
+  protected override render(): string {
     return `
     <section class="location-city-component">
     <div class="my-5 py-3">

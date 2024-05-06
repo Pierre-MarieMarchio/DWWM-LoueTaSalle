@@ -1,11 +1,9 @@
-export default class SortLocationsMenu extends HTMLElement {
-    constructor() {
-      super();
+import Components from "../../classes/Components";
+
+export default class SortLocationsMenu extends Components {
+    
   
-      this.innerHTML = this.render();
-    }
-  
-    render(): string {
+    protected override render(): string {
       return `
       <section class="sort-locations-component">
       <div class="container-sortLocationMenu bg-secondary">

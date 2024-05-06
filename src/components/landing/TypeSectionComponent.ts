@@ -1,11 +1,7 @@
-export default class TypeSectionComponent extends HTMLElement {
-  constructor() {
-    super();
+import Components from "../../classes/Components";
 
-    this.innerHTML = this.render();
-  }
-
-  render(): string {
+export default class TypeSectionComponent extends Components {
+  protected override render(): string {
     return `
         <section class="Type-component">
         <div class="my-5 py-3">

@@ -1,15 +1,7 @@
-import Alert from "bootstrap/js/dist/alert";
+import Components from "../../classes/Components";
 
-// or, specify which plugins you need:
-import { Tooltip, Toast, Popover } from "bootstrap";
-export default class HeaderComponent extends HTMLElement {
-  constructor() {
-    super();
-
-    this.innerHTML = this.render();
-  }
-
-  render(): string {
+export default class HeaderComponent extends Components {
+  protected override render(): string {
     return `
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark fixed-top">

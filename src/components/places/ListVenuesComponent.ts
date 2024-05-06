@@ -1,12 +1,8 @@
-export default class ListVenues extends HTMLElement {
-    constructor() {
-      super();
-  
-      this.innerHTML = this.render();
-    }
-  
-    render(): string {
-      return `
+import Components from "../../classes/Components";
+
+export default class ListVenues extends Components {
+  protected override render(): string {
+    return `
       <section class="List-Venues-component">
       <div class="container-listVenues">
         <ul class="list-group list-group-flush">
@@ -107,7 +103,7 @@ export default class ListVenues extends HTMLElement {
       </div>
     </section>
             `;
-    }
   }
-  
-  customElements.define("list-venues", ListVenues);
+}
+
+customElements.define("list-venues", ListVenues);

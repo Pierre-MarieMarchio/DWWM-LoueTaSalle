@@ -1,11 +1,7 @@
-export default class FooterComponent extends HTMLElement {
-  constructor() {
-    super();
+import Components from "../../classes/Components";
 
-    this.innerHTML = this.render();
-  }
-
-  render(): string {
+export default class FooterComponent extends Components {
+  protected override render(): string {
     return `
       <footer class="">
       <div class="row justify-content-between">
