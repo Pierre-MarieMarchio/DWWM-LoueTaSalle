@@ -19,6 +19,7 @@ const config = {
     static: path.resolve(__dirname, "dist"),
     port: 8080,
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -27,6 +28,7 @@ const config = {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
         removeComments: true,
+        
       },
     }),
     new CopyWebpackPlugin({
