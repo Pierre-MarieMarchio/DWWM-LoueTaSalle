@@ -1,19 +1,33 @@
 import Components from "../../classes/Components";
 
 export default class FormReservation extends Components {
-  
+  private _formdata: any;
+  private _form: HTMLFormElement;
+
+  constructor() {
+    super()
+    this._form = this.querySelector("#reservationForm");
+    this._form.onsubmit = this.handleReservationSubmit;
+  }
+
+  handleReservationSubmit = (e: SubmitEvent): void => {
+    e.preventDefault();
+    let entries = Object.fromEntries(new FormData(this._form));
+    this._formdata = entries;
+  }
+
   protected override render(): string {
     return `
     <div class="container">
-    <form>
-      <fieldset desabled>
+    <form novalidate id="reservationForm">
+      <fieldset>
         <legend class="mt-3">Vos coordonnées</legend>
         <div>Déja inscrit ? Cliquez ici pour vous connecter !</div>
         <div class="row">
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="lastName"
               class="form-control"
               placeholder="Nom *"
             />
@@ -21,7 +35,7 @@ export default class FormReservation extends Components {
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="email"
               class="form-control"
               placeholder="Adresse email *"
             />
@@ -31,7 +45,7 @@ export default class FormReservation extends Components {
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="firstName"
               class="form-control"
               placeholder="Prénom *"
             />
@@ -39,7 +53,7 @@ export default class FormReservation extends Components {
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="cellphone"
               class="form-control"
               placeholder="06 00 00 00 00"
             />
@@ -51,7 +65,7 @@ export default class FormReservation extends Components {
           prestataires que vous recherchez
         </div>
         <div class="col mb-3">
-          <select class="form-select" aria-label="Default select example">
+          <select name="eventNature" class="form-select" aria-label="Default select example">
             <option selected>Nature de votre événement</option>
             <option value="1">Afterwork</option>
             <option value="2">Babyshower</option>
@@ -73,7 +87,7 @@ export default class FormReservation extends Components {
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="eventDate"
               class="form-control"
               placeholder="Date de votre événement *"
             />
@@ -81,7 +95,7 @@ export default class FormReservation extends Components {
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="eventHour"
               class="form-control"
               placeholder="Heure de début *"
             />
@@ -89,7 +103,7 @@ export default class FormReservation extends Components {
         </div>
         <div class="row">
           <div class="col mb-3">
-            <select class="form-select" aria-label="Default select example">
+            <select name="eventDistrict" class="form-select" aria-label="Default select example">
               <option selected>Département de recherche *</option>
               <option value="1">Ain</option>
               <option value="2">Nord</option>
@@ -99,14 +113,14 @@ export default class FormReservation extends Components {
           <div class="col mb-3">
             <input
               type="text"
-              id="disabledTextInput"
+              name="eventPeople"
               class="form-control"
               placeholder="Nombre de participants *"
             />
           </div>
         </div>
         <div class="col mb-3">
-          <select class="form-select" aria-label="Default select example">
+          <select name="eventAgeAverage" class="form-select" aria-label="Default select example">
             <option selected>Moyenne d'âge *</option>
             <option value="1">--</option>
             <option value="2">18-20</option>
@@ -124,13 +138,13 @@ export default class FormReservation extends Components {
             <div class="col mb-3">
               <input
                 type="text"
-                id="disabledTextInput"
+                name="eventPreferredCity"
                 class="form-control"
                 placeholder="Ville(s) préférée(s)"
               />
             </div>
             <div class="col mb-3">
-              <select class="form-select" aria-label="Default select example">
+              <select name="eventVenue" class="form-select" aria-label="Default select example">
                 <option selected>Type de lieux</option>
                 <option value="1">Hôtel 2**</option>
                 <option value="2">Hôtel 3***</option>
@@ -141,7 +155,7 @@ export default class FormReservation extends Components {
               </select>
             </div>
             <div class="col mb-3">
-              <select class="form-select" aria-label="Default select example">
+              <select name="eventType" class="form-select" aria-label="Default select example">
                 <option selected>Configuration *</option>
                 <option value="1">Indifférent</option>
                 <option value="2">Banquet</option>
@@ -149,14 +163,14 @@ export default class FormReservation extends Components {
               </select>
             </div>
             <div class="col mb-3">
-              <select class="form-select" aria-label="Default select example">
+              <select name="eventCaterer" class="form-select" aria-label="Default select example">
                 <option selected>Besoin d'un traiteur ? *</option>
                 <option value="1">Oui</option>
                 <option value="2">Non</option>
               </select>
             </div>
             <div class="col mb-3">
-              <select class="form-select" aria-label="Default select example">
+              <select name="eventQuotation" class="form-select" aria-label="Default select example">
                 <option selected>Combien de devis souhaitez-vous ?</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -168,7 +182,7 @@ export default class FormReservation extends Components {
             <div class="col mb-3">
               <input
                 type="text"
-                id="disabledTextInput"
+                name="eventBudget"
                 class="form-control"
                 placeholder="Budget global estimé €"
               />
@@ -178,6 +192,7 @@ export default class FormReservation extends Components {
                 <div class="col">
                   <select
                     class="form-select"
+                    name="eventAccomodation"
                     aria-label="Default select example"
                   >
                     <option selected>Hébergement</option>
@@ -188,7 +203,7 @@ export default class FormReservation extends Components {
                 <div class="col">
                   <input
                     type="text"
-                    id="disabledTextInput"
+                    name="eventBedding"
                     class="form-control"
                     placeholder="Nombre de couchages..."
                   />
@@ -199,6 +214,7 @@ export default class FormReservation extends Components {
           <div class="col d-flex align-items-stretch">
             <textarea
               class="form-control"
+              name="eventDetails"
               id="validationTextarea"
               placeholder="Détail de votre demande"
               required
@@ -208,6 +224,7 @@ export default class FormReservation extends Components {
         <div class="mb-3 form-check">
           <input
             type="checkbox"
+            name="cguChecked"
             class="form-check-input"
             id="exampleCheck1"
           />
@@ -216,9 +233,9 @@ export default class FormReservation extends Components {
           >
         </div>
         <div class="d-flex justify-content-center mb-3">
-          <button type="submit" class="btn btn-primary">
-            Envoyer ma demande
-          </button>
+          <input type="submit" class="btn btn-primary" value="Envoyer ma demande"/>
+            
+          
         </div>
       </fieldset>
     </form>
