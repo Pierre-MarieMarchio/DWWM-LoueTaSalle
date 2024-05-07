@@ -22,5 +22,6 @@ export interface ReservationModel {
 }
 
 export default class BookingModel {
-    private _formdata
+    private _formdata: any;
+    private _formresult: ReservationModel;
 }
