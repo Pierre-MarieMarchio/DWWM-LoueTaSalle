@@ -1,11 +1,11 @@
 import App from "./classes/App";
-import {routes} from "./configs/Route";
+import { routes } from "./configs/Route";
 
 export default class Router {
-  private _screen: any = null;
-  private _route = routes;
+  private _screen: HTMLElement = null;
+  private _route: any = routes;
 
-  get screen(): any {
+  get screen(): HTMLElement {
     return this._screen;
   }
 
@@ -26,15 +26,14 @@ export default class Router {
   };
 
   navigate = () => {
-    const page = document.getElementById("app") as HTMLElement;
     const curentRoute = this._route[location.pathname];
+    const falseRoute = this._route["/page-not-found"];
 
     if (curentRoute) {
-
-    }else {
-      
+      this._screen = new curentRoute();
+    } else {
+      this._screen = new falseRoute();
     }
-    
     App.instance.render();
   };
 }

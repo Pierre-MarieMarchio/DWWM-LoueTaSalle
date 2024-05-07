@@ -28,7 +28,6 @@ const config = {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
         removeComments: true,
-        
       },
     }),
     new CopyWebpackPlugin({
