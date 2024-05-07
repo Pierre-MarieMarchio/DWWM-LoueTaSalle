@@ -1,5 +1,5 @@
-import FormReservationComponent from "../../components/reservation/FormReservationComponent";
-import Screen from "../../classes/Screen";
+import FormReservationComponent from "../components/reservation/FormReservationComponent";
+import Screen from "../classes/Screen";
 
 export default class ResevationScreen extends Screen {
   constructor() {
