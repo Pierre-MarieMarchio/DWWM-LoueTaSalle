@@ -65,7 +65,7 @@ export default class FormReservation extends Components {
           prestataires que vous recherchez
         </div>
         <div class="col mb-3">
-          <select name="eventType" class="form-select" aria-label="Default select example">
+          <select name="eventNature" class="form-select" aria-label="Default select example">
             <option selected>Nature de votre événement</option>
             <option value="1">Afterwork</option>
             <option value="2">Babyshower</option>
