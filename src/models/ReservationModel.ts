@@ -55,11 +55,17 @@ export default class BookingModel {
     if (typeof this._formresult.lastName === "string") {
       return this._formresult.lastName;
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error ("n'est pas un string");
     }
   }
 
-  private checkFirstName(): string {}
+  private checkFirstName(): string {
+    if (this._formdata.firstName instanceof String) {
+      return this._formdata.firstName;
+    } else {
+      throw new Error ("n'est pas un string");
+    }
+  }
 
   private checkEmail(): string {}
 
