@@ -1,3 +1,5 @@
+import FormReservation from "../components/reservation/FormReservationComponent";
+
 export interface ReservationInterface {
   lastName: string;
   firstName: string;
@@ -22,6 +24,7 @@ export interface ReservationInterface {
 }
 
 export default class BookingModel {
+  [key: string]: any;
   private _formdata: any;
   private _formresult: ReservationInterface;
 
@@ -196,7 +199,7 @@ export default class BookingModel {
     }
 
   }
-  
+
 
   private checkEventDetails(): string {
 
@@ -214,5 +217,28 @@ export default class BookingModel {
     } else {
       throw new Error("cguChecked n'est pas un string");
     }
+  }
+
+  public validateForm() {
+    this._formdata.querySelectorAll("input, select, textarea").forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+      const name = field.name;
+
+      try {
+        this['check' + name.charAt(0).toUpperCase() + name.slice(1)]();
+        console.log("c'est validé")
+        field.classList.remove('is-invalid');
+        field.classList.add('is-valid');
+      } catch (error) {
+        console.log("c'est pas validé")
+        field.classList.remove('is-valid');
+        field.classList.add('is-invalid');
+        // TODO
+        //const errorElement = field.parentElement.querySelector('.invalid-feedback');
+        //if (errorElement) {
+        //  errorElement.textContent = error.message;
+        //}
+      }
+
+    });
   }
 }
