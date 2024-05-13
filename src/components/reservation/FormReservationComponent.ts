@@ -94,7 +94,7 @@ export default class FormReservation extends Components {
           </div>
           <div class="col mb-3">
             <input
-              type="text"
+              type="time"
               name="eventHour"
               class="form-control"
               placeholder="Heure de début *"
