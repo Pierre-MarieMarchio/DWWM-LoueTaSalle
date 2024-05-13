@@ -52,8 +52,8 @@ export default class BookingModel {
   }
 
   private checkLastName(): string {
-    if (typeof this._formresult.lastName === "string") {
-      return this._formresult.lastName;
+    if (this._formdata.lastName instanceof String) {
+      return this._formdata.lastName;
     } else {
       throw new Error("n'est pas un string");
     }
@@ -67,27 +67,85 @@ export default class BookingModel {
     }
   }
 
-  private checkEmail(): string {}
-
-  private checkCellphone(): number {}
-
-  private checkEventNature(): string {}
-
-  private checkEventDate(): Date {}
-
-  private checkEventHour(): any {
-    // trouver le type
+  private checkEmail(): string {
+    if (this._formdata.checkEmail instanceof String) {
+      return this._formdata.checkEmail;
+    } else {
+      throw new Error("n'est pas un string");
+    }
   }
 
-  private checkEventDistrict(): string {}
+  private checkCellphone(): number {
+    if (this._formdata.checkCellphone instanceof Number) {
+      return this._formdata.checkCellphone;
+    } else {
+      throw new Error("n'est pas un number");
+    }
+  }
 
-  private checkEventPeople(): number {}
+  private checkEventNature(): string {
+    if (this._formdata.checkEventNature instanceof String) {
+      return this._formdata.checkEventNature;
+    } else {
+      throw new Error("n'est pas un string");
+    }
+  }
 
-  private checkEventAgeAverage(): string {}
+  private checkEventDate(): Date {
+    if (this._formdata.checkEventDate instanceof Date) {
+      return this._formdata.checkEventDate;
+    } else {
+      throw new Error("n'est pas un date");
+    }
+  }
 
-  private checkEventPreferredCity(): string {}
+  private checkEventHour(): string {
+    if (this._formdata.checkEventHour instanceof String) {
+      return this._formdata.checkEventHour;
+    } else {
+      throw new Error("n'est pas un string");
+    }
+  }
 
-  private checkEventVenue(): string {}
+  private checkEventDistrict(): string {
+    if (this._formdata.checkEventDistrict instanceof String) {
+      return this._formdata.checkEventDistrict;
+    } else {
+      throw new Error("n'est pas un string");
+    }
+  }
+
+  private checkEventPeople(): number {
+    if (this._formdata.checkEventPeople instanceof Number) {
+      return this._formdata.checkEventPeople;
+    } else {
+      throw new Error("n'est pas un number");
+    }
+  }
+
+  private checkEventAgeAverage(): string {
+    if (this._formdata.checkEventAgeAverage instanceof String) {
+      return this._formdata.checkEventAgeAverage;
+    } else {
+      throw new Error("n'est pas un string");
+    }
+  }
+
+  private checkEventPreferredCity(): string {
+    if (this._formdata.checkEventPreferredCity instanceof String) {
+      return this._formdata.checkEventPreferredCity;
+    } else {
+      throw new Error("n'est pas un string");
+    }
+  }
+
+  private checkEventVenue(): string {
+    if (this._formdata.checkEventVenue instanceof String) {
+      return this._formdata.checkEventVenue;
+    } else {
+      throw new Error("n'est pas un string");
+    }
+  }
 
   private checkEventType(): string {
     if (this._formdata.eventType instanceof String) {
@@ -156,6 +214,5 @@ export default class BookingModel {
     } else {
       throw new Error("cguChecked n'est pas un string");
     }
-
   }
 }
