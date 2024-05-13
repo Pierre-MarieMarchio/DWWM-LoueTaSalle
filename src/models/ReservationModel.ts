@@ -1,4 +1,4 @@
-export interface ReservationModel {
+export interface ReservationInterface {
   lastName: string;
   firstName: string;
   email: string;
@@ -23,7 +23,7 @@ export interface ReservationModel {
 
 export default class BookingModel {
   private _formdata: any;
-  private _formresult: ReservationModel;
+  private _formresult: ReservationInterface;
 
   constructor(formData: any) {
     this._formdata = formData;
@@ -55,7 +55,7 @@ export default class BookingModel {
     if (typeof this._formresult.lastName === "string") {
       return this._formresult.lastName;
     } else {
-      throw new Error ("n'est pas un string");
+      throw new Error("n'est pas un string");
     }
   }
 
@@ -63,7 +63,7 @@ export default class BookingModel {
     if (this._formdata.firstName instanceof String) {
       return this._formdata.firstName;
     } else {
-      throw new Error ("n'est pas un string");
+      throw new Error("n'est pas un string");
     }
   }
 
@@ -89,19 +89,73 @@ export default class BookingModel {
 
   private checkEventVenue(): string {}
 
-  private checkEventType(): string {}
+  private checkEventType(): string {
+    if (this._formdata.eventType instanceof String) {
+      return this._formdata.event;
+    } else {
+      throw new Error("eventType n'est pas un string");
+    }
+  }
 
-  private checkEventCaterer(): string {}
+  private checkEventCaterer(): string {
+    if (this._formdata.eventCaterer instanceof String) {
+      return this._formdata.eventCaterer;
+    } else {
+      throw new Error("eventCaterer n'est pas un string");
+    }
+  }
 
-  private checkEventQuotation(): string {}
+  private checkEventQuotation(): string {
+    if (this._formdata.eventQuotation instanceof String) {
+      return this._formdata.eventQuotation;
+    } else {
+      throw new Error("eventQuotation n'est pas un string");
+    }
+  }
 
-  private checkEventBudget(): number {}
+  private checkEventBudget(): number {
+    if (this._formdata.eventBudget instanceof Number) {
+      return this._formdata.eventBudget;
+    } else {
+      throw new Error("eventBudget n'est pas un string");
+    }
 
-  private checkEventAccomodation(): string {}
+  }
 
-  private checkEventBedding(): number {}
+  private checkEventAccomodation(): string {
+    if (this._formdata.eventAccomodation instanceof String) {
+      return this._formdata.eventAccomodation;
+    } else {
+      throw new Error("eventAccomodation n'est pas un string");
+    }
+  }
 
-  private checkEventDetails(): string {}
+  private checkEventBedding(): number {
+    if (this._formdata.eventBedding instanceof Number) {
+      return this._formdata.eventBedding;
+    } else {
+      throw new Error("eventBedding n'est pas un string");
+    }
 
-  private checkCguCheck(): boolean {}
+  }
+  
+
+  private checkEventDetails(): string {
+
+    if (this._formdata.eventDetails instanceof String) {
+      return this._formdata.eventDetails;
+    } else {
+      throw new Error("eventDetails n'est pas un string");
+    }
+
+  }
+
+  private checkCguCheck(): boolean {
+    if (this._formdata.cguChecked instanceof Boolean) {
+      return this._formdata.cguChecked;
+    } else {
+      throw new Error("cguChecked n'est pas un string");
+    }
+
+  }
 }
