@@ -40,175 +40,223 @@ export default class BookingModel {
   }
 
   private checkLastName(): string {
+
     if (typeof this._formdata.lastName === "string") {
       if (this._formdata.lastName.length > 1 && this._formdata.lastName.length < 42) {
         return this._formdata.lastName;
       } else {
         throw new Error("Le nom de famille est soit trop court, soit trop long.");
       }
+
     } else {
       throw new Error("Le nom de famille n'est pas une chaîne de caractères");
     }
   }
-
+  
   private checkFirstName(): string {
+
     if (typeof this._formdata.firstName === "string") {
       if (this._formdata.firstName > 1 && this._formdata.firstName < 42) {
         return this._formdata.firstName;
       } else {
         throw new Error("Le prénom est soit trop court, soit trop long.");
       }
+
     } else {
       throw new Error("Le prénom n'est pas un string");
     }
   }
-
+  
   private checkEmail(): string {
-    if (typeof this._formdata.checkEmail === "string") {
-      return this._formdata.checkEmail;
+
+    if (typeof this._formdata.email === 'string') {
+      return this._formdata.email;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkCellphone(): number {
-    if (typeof this._formdata.checkCellphone === "string") {
-      return this._formdata.checkCellphone;
+
+    if (typeof this._formdata.cellphone === 'number') {
+      return this._formdata.cellphone;
+
     } else {
       throw new Error("n'est pas un number");
     }
   }
-
+  
   private checkEventNature(): string {
-    if (typeof this._formdata.checkEventNature === "string") {
-      return this._formdata.checkEventNature;
+
+    if (typeof this._formdata.eventNature === 'string') {
+      return this._formdata.eventNature;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventDate(): Date {
-    if (typeof this._formdata.checkEventDate === "string") {
-      return this._formdata.checkEventDate;
+
+    const dateString = this._formdata.eventDate;
+    if (typeof dateString === 'string') {
+      const date = new Date(dateString);
+      if (!isNaN(date.getTime())) {
+        return date;
+      } else {
+        throw new Error("n'est pas une date valide");
+      }
+
     } else {
-      throw new Error("n'est pas un date");
+      throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventHour(): string {
+
     if (typeof this._formdata.checkEventHour === "string") {
       return this._formdata.checkEventHour;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventDistrict(): string {
+
     if (typeof this._formdata.checkEventDistrict === "string") {
       return this._formdata.checkEventDistrict;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventPeople(): number {
+
     if (typeof this._formdata.checkEventPeople === "string") {
       return this._formdata.checkEventPeople;
+
     } else {
       throw new Error("n'est pas un number");
     }
   }
-
+  
   private checkEventAgeAverage(): string {
+
     if (typeof this._formdata.checkEventAgeAverage === "string") {
       return this._formdata.checkEventAgeAverage;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventPreferredCity(): string {
+
     if (typeof this._formdata.checkEventPreferredCity === "string") {
       return this._formdata.checkEventPreferredCity;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventVenue(): string {
+
     if (typeof this._formdata.checkEventVenue === "string") {
       return this._formdata.checkEventVenue;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
-
+  
   private checkEventType(): string {
-    if (typeof this._formdata.eventType === "string") {
-      return this._formdata.event;
+
+    if (typeof this._formdata.eventType === 'string' && this._formdata.eventType !== '') {
+      return this._formdata.eventType;
+
     } else {
-      throw new Error("eventType n'est pas un string");
+      throw new Error("eventType est vide ou n'est pas un string");
     }
   }
-
+  
   private checkEventCaterer(): string {
-    if (typeof this._formdata.eventCaterer === "string") {
+
+    if (typeof this._formdata.eventCaterer === 'string' && this._formdata.eventCaterer !== '') {
+
       return this._formdata.eventCaterer;
     } else {
-      throw new Error("eventCaterer n'est pas un string");
+      throw new Error("eventCaterer est vide ou n'est pas un string");
     }
   }
-
+  
   private checkEventQuotation(): string {
-    if (typeof this._formdata.eventQuotation === "string") {
+
+    if (typeof this._formdata.eventQuotation === 'string' && this._formdata.eventQuotation !== '') {
+
       return this._formdata.eventQuotation;
     } else {
-      throw new Error("eventQuotation n'est pas un string");
+      throw new Error("eventQuotation est vide ou n'est pas un string");
     }
   }
-
+  
   private checkEventBudget(): number {
-    if (typeof this._formdata.eventBudget === "string") {
-      return this._formdata.eventBudget;
+
+    const budget = Number(this._formdata.eventBudget);
+    if (!isNaN(budget) && budget >= 0) {
+      return budget;
+
     } else {
-      throw new Error("eventBudget n'est pas un string");
+      throw new Error("eventBudget n'est pas un number valide");
     }
   }
-
+  
   private checkEventAccomodation(): string {
-    if (typeof this._formdata.eventAccomodation === "string") {
+
+    if (typeof this._formdata.eventAccomodation === 'string' && this._formdata.eventAccomodation !== '') {
+
       return this._formdata.eventAccomodation;
     } else {
-      throw new Error("eventAccomodation n'est pas un string");
+      throw new Error("eventAccomodation est vide ou n'est pas un string");
     }
   }
-
+  
   private checkEventBedding(): number {
-    if (typeof this._formdata.eventBedding === "string") {
-      return this._formdata.eventBedding;
+
+    const bedding = Number(this._formdata.eventBedding);
+    if (!isNaN(bedding) && bedding >= 0) {
+      return bedding;
+
     } else {
-      throw new Error("eventBedding n'est pas un string");
+      throw new Error("eventBedding n'est pas un number valide");
     }
   }
-
-
+  
   private checkEventDetails(): string {
-    if (typeof this._formdata.eventDetails === "string") {
+
+    if (typeof this._formdata.eventDetails === 'string' && this._formdata.eventDetails !== '') {
+
       return this._formdata.eventDetails;
     } else {
-      throw new Error("eventDetails n'est pas un string");
+      throw new Error("eventDetails est vide ou n'est pas un string");
     }
   }
-
+  
   private checkCguCheck(): boolean {
-    if (typeof this._formdata.cguChecked === "boolean") {
+
+    if (typeof this._formdata.cguChecked === 'boolean' && this._formdata.cguChecked === true) {
+
       return this._formdata.cguChecked;
     } else {
-      throw new Error("cguChecked n'est pas un string");
+      throw new Error("cguChecked n'est pas coché ou n'est pas un boolean");
     }
   }
 
   public validateForm() {
+
     this._form.querySelectorAll("input, select, textarea").forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
       const name = field.name;
 
