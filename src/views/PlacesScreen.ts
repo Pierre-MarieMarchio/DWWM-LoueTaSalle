@@ -1,6 +1,6 @@
-import Screen from "../../classes/Screen";
+import Screen from "../classes/Screen";
 
-export default class PlaceScreen extends Screen {
+export default class PlacesScreen extends Screen {
   constructor() {
     super();
   }
@@ -13,8 +13,8 @@ export default class PlaceScreen extends Screen {
         <div>
           <footer-component/>
         </div>
-          `;
+        `;
   }
 }
 
-customElements.define("place-screen", PlaceScreen);
+customElements.define("places-screen", PlacesScreen);

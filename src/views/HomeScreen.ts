@@ -1,10 +1,10 @@
-import Screen from "../../classes/Screen";
+import Screen from "../classes/Screen";
 
-import SearchBarComponent from "../../components/landing/SearchBarComponent";
-import TypeSectionComponent from "../../components/landing/TypeSectionComponent";
-import LocationSectionComponent from "../../components/landing/LocationSectionComponent";
-import LocationCitySectionComponent from "../../components/landing/LocationCitySectionComponent";
-import TestimonialsCarouselComponent from "../../components/landing/TestimonialsCarouselComponent";
+import SearchBarComponent from "../components/landing/SearchBarComponent";
+import TypeSectionComponent from "../components/landing/TypeSectionComponent";
+import LocationSectionComponent from "../components/landing/LocationSectionComponent";
+import LocationCitySectionComponent from "../components/landing/LocationCitySectionComponent";
+import TestimonialsCarouselComponent from "../components/landing/TestimonialsCarouselComponent";
 
 export default class HomeScreen extends Screen {
   constructor() {
