@@ -1,13 +1,17 @@
 import Components from "../../classes/Components";
+import BookingModel from "../../models/ReservationModel";
 
 export default class FormReservation extends Components {
   private _formdata: any;
   private _form: HTMLFormElement;
+  private _bookingModel: BookingModel;
 
   constructor() {
     super()
     this._form = this.querySelector("#reservationForm");
     this._form.onsubmit = this.handleReservationSubmit;
+    this._bookingModel = new BookingModel(this._formdata);
+    // TODO eventlistener pour appeler validateForm()
   }
 
   handleReservationSubmit = (e: SubmitEvent): void => {
