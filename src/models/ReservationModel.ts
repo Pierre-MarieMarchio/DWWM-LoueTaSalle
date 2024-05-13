@@ -162,4 +162,8 @@ export default class BookingModel {
   private checkEventDetails(): string { }
 
   private checkCguCheck(): boolean { }
+
+  private valideForm(): {
+    
+  }
 }
