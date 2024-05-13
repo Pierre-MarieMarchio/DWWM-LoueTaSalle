@@ -1,6 +1,24 @@
 import Components from "../../classes/Components";
 
 export default class FormContactComponent extends Components {
+  private _formdataContact: any;
+  constructor() {
+    super();
+    this.innerHTML = this.render();
+    this._formdataContact = this.handleContactSubmit();
+  }
+
+  handleContactSubmit = (): any => {
+    const formcontact = this.querySelector("form");
+    formcontact.addEventListener("submit", (e: MouseEvent) => {
+      e.preventDefault();
+      let form = e.target as HTMLFormElement;
+      let entries = Object.fromEntries(new FormData(form));
+      console.log("jnj");
+      console.log(entries);
+      // return entries;
+    });
+  };
   protected override render(): string {
     return `
     <div class="container">
@@ -12,6 +30,7 @@ export default class FormContactComponent extends Components {
               <div class="col mb-3">
                 <input
                   type="text"
+                  name="company"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Société"
@@ -19,7 +38,8 @@ export default class FormContactComponent extends Components {
               </div>
               <div class="col mb-3">
                 <input
-                  type="text"
+                  type="lastname"
+                  name="Nom"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Nom *"
@@ -27,7 +47,8 @@ export default class FormContactComponent extends Components {
               </div>
               <div class="col mb-3">
                 <input
-                  type="text"
+                  type="name"
+                  name="firstname"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Prénom *"
@@ -36,6 +57,7 @@ export default class FormContactComponent extends Components {
               <div class="col mb-3">
                 <input
                   type="text"
+                  name="country"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Pays *"
@@ -44,6 +66,7 @@ export default class FormContactComponent extends Components {
               <div class="col mb-3">
                 <input
                   type="text"
+                  name="city"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Ville *"
@@ -52,6 +75,7 @@ export default class FormContactComponent extends Components {
               <div class="col mb-3">
                 <input
                   type="text"
+                  name="number"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="06 00 00 00 00"
@@ -60,6 +84,7 @@ export default class FormContactComponent extends Components {
               <div class="col mb-3">
                 <input
                   type="text"
+                  name="mail"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Adresse email *"
