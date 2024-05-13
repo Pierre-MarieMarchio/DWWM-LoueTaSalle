@@ -23,3 +23,13 @@
 
 @import "./scss.Components/header.scss";
 @import "./scss.Components/testimonialsCarousel.scss";
+
+
+.is-invalid{
+
+    background-color: red !important;
+}
+
+.is-valid {
+    background-color: green!important;
+}

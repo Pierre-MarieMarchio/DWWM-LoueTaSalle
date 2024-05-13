@@ -1,5 +1,3 @@
-import FormReservation from "../components/reservation/FormReservationComponent";
-
 export interface ReservationInterface {
   lastName: string;
   firstName: string;
@@ -24,35 +22,23 @@ export interface ReservationInterface {
 }
 
 export default class BookingModel {
-  [key: string]: any;
+  
   private _formdata: any;
   private _formresult: ReservationInterface;
+  private _form: HTMLElement;
 
-  constructor(formData: any) {
-    this._formdata = formData;
-    this._formresult = {
-      lastName: this.checkLastName(),
-      firstName: this.checkFirstName(),
-      email: this.checkEmail(),
-      cellphone: this.checkCellphone(),
-      eventNature: this.checkEventNature(),
-      eventDate: this.checkEventDate(),
-      eventHour: this.checkEventHour(),
-      eventDistrict: this.checkEventDistrict(),
-      eventPeople: this.checkEventPeople(),
-      eventAgeAverage: this.checkEventAgeAverage(),
-      eventPreferredCity: this.checkEventPreferredCity(),
-      eventVenue: this.checkEventVenue(),
-      eventType: this.checkEventType(),
-      eventCaterer: this.checkEventCaterer(),
-      eventQuotation: this.checkEventQuotation(),
-      eventBudget: this.checkEventBudget(),
-      eventAccomodation: this.checkEventAccomodation(),
-      eventBedding: this.checkEventBedding(),
-      eventDetails: this.checkEventDetails(),
-      cguChecked: this.checkCguCheck(),
-    };
+  constructor(formSubmit: any, form: HTMLElement) {
+    this._form = form;
+    this._formdata = formSubmit;
+    this._formresult = null;
   }
+
+  [key: string]: any;
+
+  set formdata(data: any) {
+    this._formdata = data;
+  }
+
 
   private checkLastName(): string {
     if (this._formdata.lastName instanceof String) {
@@ -220,25 +206,7 @@ export default class BookingModel {
   }
 
   public validateForm() {
-    this._formdata.querySelectorAll("input, select, textarea").forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
-      const name = field.name;
-
-      try {
-        this['check' + name.charAt(0).toUpperCase() + name.slice(1)]();
-        console.log("c'est validé")
-        field.classList.remove('is-invalid');
-        field.classList.add('is-valid');
-      } catch (error) {
-        console.log("c'est pas validé")
-        field.classList.remove('is-valid');
-        field.classList.add('is-invalid');
-        // TODO
-        //const errorElement = field.parentElement.querySelector('.invalid-feedback');
-        //if (errorElement) {
-        //  errorElement.textContent = error.message;
-        //}
-      }
-
-    });
+    console.log(this._formdata);
+   
   }
 }
