@@ -206,11 +206,20 @@ export default class ReservationService {
   }
 
   private checkEventPreferredCity(): string {
-    if (typeof this._formdata.eventPreferredCity === "string") {
-      return this._formdata.eventPreferredCity;
 
+    function testEventPreferredCity(eventPreferredCity: string) {
+      var re = /^[a-zA-ZÀ-ÿ\-'. ]+(?: \d{5})?$/;
+      return re.test(eventPreferredCity);
+    }
+
+    if (typeof this._formdata.eventPreferredCity === "string") {
+      if (testEventPreferredCity(this._formdata.eventPreferredCity)) {
+        return this._formdata.eventPreferredCity;
+      } else {
+        throw new Error("La ville préférée indiquée ne semble pas valide.");
+      }
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("La ville préférée n'est pas un string.");
     }
   }
 
