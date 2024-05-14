@@ -86,17 +86,21 @@ export default class ReservationService {
         throw new Error("Le numéro de téléphone n'est pas à 10 caractères.");
       }
     } else {
-      throw new Error("Le numéro de téléphone n'est pas un number.");
+      throw new Error("Le numéro de téléphone n'est pas un string.");
     }
   }
 
   private checkEventNature(): string {
 
     if (typeof this._formdata.eventNature === 'string') {
-      return this._formdata.eventNature;
-
+      const eventNatureInt = parseInt(this._formdata.eventNature);
+      if (eventNatureInt > 0 && eventNatureInt < 15) {
+        return this._formdata.eventNature;
+      } else {
+        throw new Error("La nature de l'évènement sélectionnée n'est pas valide.");
+      }
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("La nature de l'évènement n'est pas un string.");
     }
   }
 
@@ -265,11 +269,11 @@ export default class ReservationService {
 
       try {
         this['check' + name.charAt(0).toUpperCase() + name.slice(1)]();
-        console.log(name + " c'est validé");
+        console.log(name + " est valide.");
         //field.classList.remove('is-invalid');
         //field.classList.add('is-valid');
       } catch (error) {
-        console.log(name + " c'est pas validé");
+        console.log(error);
         //field.classList.remove('is-valid');
         //field.classList.add('is-invalid');
         // TODO
