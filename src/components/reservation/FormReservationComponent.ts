@@ -19,6 +19,8 @@ export default class FormReservation extends Components {
     this._formdata = entries;
     this._reservationService.formdata = this._formdata;
     this._reservationService.validateForm();
+    //TODO if validateform true then make it to local storage else error message
+    this._reservationService.creatReservation();
   }
 
   protected override render(): string {
