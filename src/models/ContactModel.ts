@@ -1,30 +1,29 @@
-import FormContactComponent from "../components/contact/FormContactComponent";
-
-export interface ContactModel {
+export interface ContactModelInterface {
   company: string;
   lastname: string;
   firstname: string;
   country: string;
   city: string;
   number: any;
+  validationTextarea: string;
 }
 
-export default class ContactModele {
+export default class ContactModel {
   private _formdataContact: any;
-  private _formresult: ContactModel;
+  private _form: HTMLElement;
+  private _formresult: ContactModelInterface;
 
-  constructor(formData: any) {
-    this._formdataContact = formData;
-    this._formresult = {
-      company: this.checkCompany(),
-      lastname: this.checkLastname(),
-      firstname: this.checkFirstname(),
-      country: this.checkCountry(),
-      city: this.checkCity(),
-      number: this.checkNumber(),
-    };
+  constructor(formSubmit: any, form: HTMLElement) {
+    this._form = form;
+    this._formdataContact = formSubmit;
+    this._formresult = null;
   }
 
+  [key: string]: any;
+
+  set formdataContact(data: any) {
+    this._formdataContact = data;
+  }
   private checkCompany(): string {
     if (typeof this._formresult.company === "string") {
       return this._formresult.company;
@@ -73,5 +72,8 @@ export default class ContactModele {
     } else {
       throw new Error("Error Number");
     }
+  }
+  public validateForm() {
+    console.log(this._formdataContact);
   }
 }

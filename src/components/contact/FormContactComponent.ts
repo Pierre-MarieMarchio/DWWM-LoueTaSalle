@@ -1,23 +1,28 @@
 import Components from "../../classes/Components";
+import ContactModel from "../../models/ContactModel";
+import ContactModelInterface from "../../models/ContactModel";
+import ContactScreen from "../../views/ContactScreen";
 
 export default class FormContactComponent extends Components {
   private _formdataContact: any;
+  private _formContact: HTMLFormElement;
+  private _ContactModel: ContactModel;
   constructor() {
     super();
-    this.innerHTML = this.render();
-    this._formdataContact = this.handleContactSubmit();
+    this._formContact = this.querySelector("form");
+    this._formContact.onsubmit = this.handleContactSubmit;
+    this._ContactModel = new ContactModel(null, this._formContact);
   }
 
-  handleContactSubmit = (): any => {
-    const formcontact = this.querySelector("form");
-    formcontact.addEventListener("submit", (e: MouseEvent) => {
-      e.preventDefault();
-      let form = e.target as HTMLFormElement;
-      let entries = Object.fromEntries(new FormData(form));
-      console.log("jnj");
-      console.log(entries);
-      // return entries;
-    });
+  handleContactSubmit = (e: SubmitEvent): void => {
+    e.preventDefault();
+    let entries = Object.fromEntries(new FormData(this._formContact));
+    this._formdataContact = entries;
+    this._ContactModel.formdataContact = this._formdataContact;
+    this._ContactModel.validateForm();
+
+    console.log(entries);
+    // return entries;
   };
   protected override render(): string {
     return `
@@ -95,6 +100,7 @@ export default class FormContactComponent extends Components {
               <textarea
                 class="form-control"
                 id="validationTextarea"
+                name="validationTextarea"
                 placeholder="Votre demande *"
                 required
               ></textarea>
