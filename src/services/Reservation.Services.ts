@@ -47,14 +47,15 @@ export default class ReservationService {
   }
 
   private checkEmail(): string {
-    function checkEmail(email: string) {
+
+    function testEmail(email: string) {
       var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return re.test(email);
     }
 
     if (typeof this._formdata.email === 'string') {
       if (this._formdata.email.length > 3 && this._formdata.email.length < 42) {
-        if (checkEmail(this._formdata.email)) {
+        if (testEmail(this._formdata.email)) {
           return this._formdata.email;
         } else {
           throw new Error("L'email est dans un format invalide.");
@@ -67,13 +68,25 @@ export default class ReservationService {
     }
   }
 
-  private checkCellphone(): number {
+  private checkCellphone(): string {
 
-    if (typeof this._formdata.cellphone === 'number') {
-      return this._formdata.cellphone;
+    function testCellphone(cellphone: string) {
+      var re = /^(\d{10})$/;
+      return re.test(cellphone);
+    }
 
+    if (typeof this._formdata.cellphone === 'string') {
+      if (this._formdata.cellphone.length == 10) {
+        if (testCellphone(this._formdata.cellphone)) {
+          return this._formdata.cellphone;
+        } else {
+          throw new Error("Le numéro de téléphone ne comprends pas 10 chiffres.");
+        }
+      } else {
+        throw new Error("Le numéro de téléphone n'est pas à 10 caractères.");
+      }
     } else {
-      throw new Error("n'est pas un number");
+      throw new Error("Le numéro de téléphone n'est pas un number.");
     }
   }
 

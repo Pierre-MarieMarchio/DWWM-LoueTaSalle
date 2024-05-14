@@ -60,7 +60,7 @@ export default class FormReservation extends Components {
               type="text"
               name="cellphone"
               class="form-control"
-              placeholder="06 00 00 00 00"
+              placeholder="0600000000"
             />
           </div>
         </div>
