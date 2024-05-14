@@ -225,10 +225,14 @@ export default class ReservationService {
 
   private checkEventVenue(): string {
     if (typeof this._formdata.eventVenue === "string") {
-      return this._formdata.eventVenue;
-
+      const eventVenueInt = parseInt(this._formdata.eventVenue);
+      if (eventVenueInt > 0 && eventVenueInt < 7) {
+        return this._formdata.eventVenue;
+      } else {
+        throw new Error("Le type de lieu sélectionné est invalide.");
+      }
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("Le type de lieu n'est pas un string.");
     }
   }
 

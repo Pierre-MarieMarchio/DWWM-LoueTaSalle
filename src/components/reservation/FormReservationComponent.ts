@@ -155,9 +155,9 @@ export default class FormReservation extends Components {
                 <option value="1">Hôtel 2**</option>
                 <option value="2">Hôtel 3***</option>
                 <option value="3">Hôtel 4****</option>
-                <option value="3">Hôtel 5*****</option>
-                <option value="3">Restaurant</option>
-                <option value="3">Salle de réception</option>
+                <option value="4">Hôtel 5*****</option>
+                <option value="5">Restaurant</option>
+                <option value="6">Salle de réception</option>
               </select>
             </div>
             <div class="col mb-3">
