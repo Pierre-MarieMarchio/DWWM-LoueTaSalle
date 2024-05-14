@@ -106,17 +106,16 @@ export default class ReservationService {
 
   private checkEventDate(): Date {
 
-    const dateString = this._formdata.eventDate;
-    if (typeof dateString === 'string') {
-      const date = new Date(dateString);
+    const eventDateString = this._formdata.eventDate;
+    if (typeof eventDateString === 'string') {
+      const date = new Date(eventDateString);
       if (!isNaN(date.getTime())) {
         return date;
       } else {
-        throw new Error("n'est pas une date valide");
+        throw new Error("La date de l'évènement n'est pas une date valide.");
       }
-
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("La date de l'évènement n'est pas un string.");
     }
   }
 
