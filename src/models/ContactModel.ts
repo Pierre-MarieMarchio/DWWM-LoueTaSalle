@@ -74,6 +74,28 @@ export default class ContactModel {
     }
   }
   public validateForm() {
-    console.log(this._formdataContact);
+    this._form
+      .querySelectorAll("input, select, textarea")
+      .forEach(
+        (field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+          const name = field.name;
+
+          try {
+            this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
+            console.log(name + " c'est validé");
+            //field.classList.remove('is-invalid');
+            //field.classList.add('is-valid');
+          } catch (error) {
+            console.log(name + " c'est pas validé");
+            //field.classList.remove('is-valid');
+            //field.classList.add('is-invalid');
+            // TODO
+            //const errorElement = field.parentElement.querySelector('.invalid-feedback');
+            //if (errorElement) {
+            //  errorElement.textContent = error.message;
+            //}
+          }
+        }
+      );
   }
 }
