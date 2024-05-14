@@ -2,37 +2,13 @@ import ReservationModel from "../models/ReservationModel";
 
 export default class ReservationService {
   private _formdata: any;
-  private _formresult: ReservationModel | null;
   private _form: HTMLElement;
-
-  private _testData: ReservationModel = {
-    lastName: "string",
-    firstName: "string",
-    email: "string",
-    cellphone: 120,
-    eventNature: "string",
-    eventDate: new Date(),
-    eventHour: "string",
-    eventDistrict: "string",
-    eventPeople: 123,
-    eventAgeAverage: "string",
-    eventPreferredCity: "string",
-    eventVenue: "string",
-    eventType: "string", // PM à partir de là
-    eventCaterer: "string",
-    eventQuotation: "string",
-    eventBudget: 123,
-    eventAccomodation: "string",
-    eventBedding: 123,
-    eventDetails: "string",
-    cguChecked: true,
-  };
-
+  private _formresult: ReservationModel;
+  private _formresultArray: ReservationModel[] = [];
 
   constructor(formSubmit: any, form: HTMLElement) {
     this._form = form;
     this._formdata = formSubmit;
-    this._formresult = null;
   }
 
   [key: string]: any;
@@ -48,36 +24,30 @@ export default class ReservationService {
       } else {
         throw new Error("Le nom de famille est soit trop court, soit trop long.");
       }
-
     } else {
       throw new Error("Le nom de famille n'est pas une chaîne de caractères.");
     }
   }
 
   private checkFirstName(): string {
-
-
     if (typeof this._formdata.firstName === "string") {
       if (this._formdata.firstName.length > 1 && this._formdata.firstName.length < 42) {
-
         return this._formdata.firstName;
       } else {
         throw new Error("Le prénom est soit trop court, soit trop long.");
       }
-
     } else {
       throw new Error("Le prénom n'est pas un string.");
     }
   }
 
   private checkEmail(): string {
-
     function testEmail(email: string) {
       var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return re.test(email);
     }
 
-    if (typeof this._formdata.email === 'string') {
+    if (typeof this._formdata.email === "string") {
       if (this._formdata.email.length > 3 && this._formdata.email.length < 42) {
         if (testEmail(this._formdata.email)) {
           return this._formdata.email;
@@ -93,13 +63,12 @@ export default class ReservationService {
   }
 
   private checkCellphone(): string {
-
     function testCellphone(cellphone: string) {
       var re = /^(\d{10})$/;
       return re.test(cellphone);
     }
 
-    if (typeof this._formdata.cellphone === 'string') {
+    if (typeof this._formdata.cellphone === "string") {
       if (this._formdata.cellphone.length == 10) {
         if (testCellphone(this._formdata.cellphone)) {
           return this._formdata.cellphone;
@@ -115,8 +84,7 @@ export default class ReservationService {
   }
 
   private checkEventNature(): string {
-
-    if (typeof this._formdata.eventNature === 'string') {
+    if (typeof this._formdata.eventNature === "string") {
       const eventNatureInt = parseInt(this._formdata.eventNature);
       if (eventNatureInt > 0 && eventNatureInt < 15) {
         return this._formdata.eventNature;
@@ -129,9 +97,8 @@ export default class ReservationService {
   }
 
   private checkEventDate(): Date {
-
     const eventDateString = this._formdata.eventDate;
-    if (typeof eventDateString === 'string') {
+    if (typeof eventDateString === "string") {
       const date = new Date(eventDateString);
       if (!isNaN(date.getTime())) {
         return date;
@@ -144,7 +111,6 @@ export default class ReservationService {
   }
 
   private checkEventHour(): string {
-
     if (typeof this._formdata.eventHour === "string") {
       const eventHourString = this._formdata.eventHour.replace(":", "");
       const eventHourInt = parseInt(eventHourString);
@@ -236,7 +202,6 @@ export default class ReservationService {
     }
   }
 
-
   private checkEventType(): string {
     if (typeof this._formdata.eventType === "string" && this._formdata.eventType !== "") {
       return this._formdata.eventType;
@@ -304,32 +269,69 @@ export default class ReservationService {
   }
 
   public validateForm() {
+    let isValid: boolean = false;
+
+    let formResult: ReservationModel = {
+      lastName: null,
+      firstName: null,
+      email: null,
+      cellphone: null,
+      eventNature: null,
+      eventDate: null,
+      eventHour: null,
+      eventDistrict: null,
+      eventPeople: null,
+      eventAgeAverage: null,
+      eventPreferredCity: null,
+      eventVenue: null,
+      eventType: null,
+      eventCaterer: null,
+      eventQuotation: null,
+      eventBudget: null,
+      eventAccomodation: null,
+      eventBedding: null,
+      eventDetails: null,
+      cguChecked: null,
+    };
+
     this._form
       .querySelectorAll("input, select, textarea")
       .forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
-        const name = field.name;
+        if (field.type !== "submit") {
+          const name = field.name;
 
-        try {
-          this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
-          console.log(name + " c'est validé");
-          field.classList.remove('is-invalid');
-          field.classList.add('is-valid');
-        } catch (error) {
-          console.log(name + " c'est pas validé");
-          field.classList.remove('is-valid');
-          field.classList.add('is-invalid');
-          // TODO
-          //const errorElement = field.parentElement.querySelector('.invalid-feedback');
-          //if (errorElement) {
-          //  errorElement.textContent = error.message;
-          //}
+          try {
+            const result = this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
+            console.log(name + " c'est validé");
+            field.classList.remove("is-invalid");
+            field.classList.add("is-valid");
+            if (formResult.hasOwnProperty(name)) {
+              isValid = true;
+              formResult[name] = result;
+            }
+          } catch (error) {
+            console.log(name + " c'est pas validé");
+            field.classList.remove("is-valid");
+            field.classList.add("is-invalid");
+            isValid = false;
+          }
         }
       });
+
+    if (isValid) {
+      this._formresult = formResult;
+      this._formresultArray.push(this._formresult)
+      console.log(this._formresult);
+    }
+    
+
+    return isValid;
   }
 
-  public creatReservation(): void {
-    this._formresult = this._testData;
-    localStorage.setItem("Reservation", JSON.stringify(this._formresult));
+  public createReservation(): void {
+    if (this._formresult) {
+      localStorage.setItem("Reservation", JSON.stringify(this._formresultArray));
+    } 
+    return;
   }
-
 }
