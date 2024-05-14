@@ -6,4 +6,5 @@ export default interface ContactModelModel {
   city: string;
   number: string;
   validationTextarea: string;
+  mail: string;
 }

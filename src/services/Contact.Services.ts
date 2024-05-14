@@ -13,7 +13,8 @@ export default class ContactService {
     city: "string",
     number: "6060625",
     validationTextarea: "string",
-  }
+    mail: "string",
+  };
 
   constructor(formSubmit: any, form: HTMLElement) {
     this._form = form;
@@ -95,13 +96,44 @@ export default class ContactService {
       throw new Error("Error City Paris or Lyon or Marseille");
     }
   }
+  private checkMail(): any {
+    if (typeof this._formdataContact.mail === "string") {
+      const mailRegex =
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!mailRegex.test(this._formdataContact.mail)) {
+        throw new Error("Format mail non valide");
+      } else {
+        return this._formdataContact.mail;
+      }
+    } else {
+      throw new Error("Error Mail");
+    }
+  }
   private checkNumber(): any {
-    if (typeof this._formdataContact.number === "number") {
-      return this._formdataContact.firstname;
+    if (typeof this._formdataContact.number === "string") {
+      const phoneNumberRegex = /^0[0-9]{9}$/;
+      if (!phoneNumberRegex.test(this._formdataContact.number)) {
+        throw new Error(
+          "Le numéro de téléphone de la société doit commencer par 0 et contenir exactement 10 chiffres."
+        );
+      } else {
+        return this._formdataContact.number;
+      }
     } else {
       throw new Error("Error Number");
     }
   }
+  private checkValidationTextarea(): any {
+    if (
+      typeof this._formdataContact.validationTextarea === "string" &&
+      this._formdataContact.validationTextarea !== ""
+    ) {
+      return this._formdataContact.validationTextarea;
+    } else {
+      throw new Error("ValidationTextarea est vide ou n'est pas un string");
+    }
+  }
+
   public validateForm() {
     this._form
       .querySelectorAll("input, select, textarea")
@@ -130,6 +162,6 @@ export default class ContactService {
 
   public createContactForm(): void {
     this._formresult = this._testData;
-    localStorage.setItem('contact', JSON.stringify(this._formresult));
+    localStorage.setItem("contact", JSON.stringify(this._formresult));
   }
 }
