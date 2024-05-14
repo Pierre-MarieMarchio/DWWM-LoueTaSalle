@@ -129,15 +129,14 @@ export default class FormReservation extends Components {
         <div class="col mb-3">
           <select name="eventAgeAverage" class="form-select" aria-label="Default select example">
             <option selected>Moyenne d'âge *</option>
-            <option value="1">--</option>
-            <option value="2">18-20</option>
-            <option value="3">20-25</option>
+            <option value="1">18-20</option>
+            <option value="2">20-25</option>
             <option value="3">25-30</option>
-            <option value="3">30-35</option>
-            <option value="3">35-40</option>
-            <option value="3">40-45</option>
-            <option value="3">45-50</option>
-            <option value="3">+ de 50</option>
+            <option value="4">30-35</option>
+            <option value="5">35-40</option>
+            <option value="6">40-45</option>
+            <option value="7">45-50</option>
+            <option value="8">+ de 50</option>
           </select>
         </div>
         <div class="row">

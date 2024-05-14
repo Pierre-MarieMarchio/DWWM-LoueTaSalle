@@ -193,11 +193,15 @@ export default class ReservationService {
 
   private checkEventAgeAverage(): string {
 
-    if (typeof this._formdata.checkEventAgeAverage === "string") {
-      return this._formdata.checkEventAgeAverage;
-
+    if (typeof this._formdata.eventAgeAverage === "string") {
+      const eventAgeAvrageInt = parseInt(this._formdata.eventAgeAverage);
+      if (eventAgeAvrageInt > 0 && eventAgeAvrageInt < 9) {
+        return this._formdata.eventAgeAverage;
+      } else {
+        throw new Error("La moyenne d'âge sélectionné n'est pas valide.");
+      }
     } else {
-
+      throw new Error("La moyenned d'âge n'est pas un string.");
     }
   }
 
