@@ -4,6 +4,6 @@ export default interface ContactModelModel {
   firstname: string;
   country: string;
   city: string;
-  number: any;
+  number: string;
   validationTextarea: string;
 }

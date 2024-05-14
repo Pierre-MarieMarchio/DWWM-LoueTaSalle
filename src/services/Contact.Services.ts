@@ -5,6 +5,16 @@ export default class ContactService {
   private _form: HTMLElement;
   private _formresult: ContactModel | null;
 
+  private _testData: ContactModel = {
+    company: "string",
+    lastname: "string",
+    firstname: "string",
+    country: "string",
+    city: "string",
+    number: "6060625",
+    validationTextarea: "string",
+  }
+
   constructor(formSubmit: any, form: HTMLElement) {
     this._form = form;
     this._formdataContact = formSubmit;
@@ -85,5 +95,10 @@ export default class ContactService {
           //}
         }
       });
+  }
+
+  public createContactForm(): void {
+    this._formresult = this._testData;
+    localStorage.setItem('contact', JSON.stringify(this._formresult));
   }
 }
