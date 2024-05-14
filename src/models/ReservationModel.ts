@@ -1,4 +1,7 @@
 export default interface ReservationModel {
+
+  [key: string]: any;
+
   lastName: string;
   firstName: string;
   email: string;
@@ -19,5 +22,6 @@ export default interface ReservationModel {
   eventBedding: number;
   eventDetails: string;
   cguChecked: boolean;
+  
 }
 

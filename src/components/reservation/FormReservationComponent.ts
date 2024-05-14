@@ -20,7 +20,7 @@ export default class FormReservation extends Components {
     this._reservationService.formdata = this._formdata;
     this._reservationService.validateForm();
     //TODO if validateform true then make it to local storage else error message
-    this._reservationService.creatReservation();
+    this._reservationService.createReservation();
   }
 
   protected override render(): string {
@@ -231,7 +231,7 @@ export default class FormReservation extends Components {
         <div class="mb-3 form-check">
           <input
             type="checkbox"
-            name="cguChecked"
+            name="cguCheck"
             class="form-check-input"
             id="exampleCheck1"
           />

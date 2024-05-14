@@ -6,6 +6,7 @@ export default class ReservationService {
   private _form: HTMLElement;
 
   private _testData: ReservationModel = {
+    
     lastName: "string",
     firstName: "string",
     email: "string",
@@ -26,6 +27,7 @@ export default class ReservationService {
     eventBedding: 123,
     eventDetails: "string",
     cguChecked: true,
+
   };
 
   constructor(formSubmit: any, form: HTMLElement) {
@@ -231,29 +233,36 @@ export default class ReservationService {
     this._form
       .querySelectorAll("input, select, textarea")
       .forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
-        const name = field.name;
+        if (field.type !== "submit") {
+          const name = field.name;
 
-        try {
-          this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
-          console.log(name + " c'est validé");
-          field.classList.remove('is-invalid');
-          field.classList.add('is-valid');
-        } catch (error) {
-          console.log(name + " c'est pas validé");
-          field.classList.remove('is-valid');
-          field.classList.add('is-invalid');
-          // TODO
-          //const errorElement = field.parentElement.querySelector('.invalid-feedback');
-          //if (errorElement) {
-          //  errorElement.textContent = error.message;
-          //}
+          try {
+            const result = this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
+            console.log(name + " c'est validé");
+            field.classList.remove("is-invalid");
+            field.classList.add("is-valid");
+            if (this._formresult[name]) {
+              this._formresult[name] = result;
+            }
+          } catch (error) {
+            console.log(name + " c'est pas validé");
+            field.classList.remove("is-valid");
+            field.classList.add("is-invalid");
+
+            // TODO
+            //const errorElement = field.parentElement.querySelector('.invalid-feedback');
+            //if (errorElement) {
+            //  errorElement.textContent = error.message;
+            //}
+          }
         }
       });
+      
+      console.log(this._formresult)
   }
 
-  public creatReservation(): void {
+  public createReservation(): void {
     this._formresult = this._testData;
     localStorage.setItem("Reservation", JSON.stringify(this._formresult));
   }
-
 }
