@@ -1,6 +1,6 @@
 export default interface ReservationModel {
 
-  [key: string]: any;
+  [key: string]: string | number | Date | boolean;
 
   lastName: string;
   firstName: string;

@@ -7,7 +7,7 @@ export default class FormReservation extends Components {
   private _reservationService: ReservationService;
 
   constructor() {
-    super()
+    super();
     this._form = this.querySelector("#reservationForm");
     this._form.onsubmit = this.handleReservationSubmit;
     this._reservationService = new ReservationService(null, this._form);
@@ -18,10 +18,14 @@ export default class FormReservation extends Components {
     let entries = Object.fromEntries(new FormData(this._form));
     this._formdata = entries;
     this._reservationService.formdata = this._formdata;
-    this._reservationService.validateForm();
-    //TODO if validateform true then make it to local storage else error message
-    this._reservationService.createReservation();
-  }
+    const isReservation = this._reservationService.validateForm();
+
+    if (isReservation) {
+      this._reservationService.createReservation();
+    } else {
+      console.error("Reservation not good");
+    }
+  };
 
   protected override render(): string {
     return `
