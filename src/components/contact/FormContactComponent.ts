@@ -1,25 +1,24 @@
 import Components from "../../classes/Components";
-import ContactModel from "../../models/ContactModel";
-import ContactModelInterface from "../../models/ContactModel";
-import ContactScreen from "../../views/ContactScreen";
+import ContactService from "../../services/Contact.Services";
+
 
 export default class FormContactComponent extends Components {
   private _formdataContact: any;
   private _formContact: HTMLFormElement;
-  private _ContactModel: ContactModel;
+  private _contactService: ContactService;
   constructor() {
     super();
     this._formContact = this.querySelector("form");
     this._formContact.onsubmit = this.handleContactSubmit;
-    this._ContactModel = new ContactModel(null, this._formContact);
+    this._contactService = new ContactService(null, this._formContact);
   }
 
   handleContactSubmit = (e: SubmitEvent): void => {
     e.preventDefault();
     let entries = Object.fromEntries(new FormData(this._formContact));
     this._formdataContact = entries;
-    this._ContactModel.formdataContact = this._formdataContact;
-    this._ContactModel.validateForm();
+    this._contactService.formdataContact = this._formdataContact;
+    this._contactService.validateForm();
 
     console.log(entries);
     // return entries;
