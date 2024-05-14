@@ -121,11 +121,12 @@ export default class ReservationService {
 
   private checkEventHour(): string {
 
-    if (typeof this._formdata.checkEventHour === "string") {
-      return this._formdata.checkEventHour;
-
+    if (typeof this._formdata.eventHour === "string") {
+      const eventHourString = this._formdata.eventHour.replace(":", "");
+      const eventHourInt = parseInt(eventHourString);
+      return this._formdata.eventHour;
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("L'heure de l'évènement n'est pas un string");
     }
   }
 
@@ -265,9 +266,10 @@ export default class ReservationService {
 
     this._form.querySelectorAll("input, select, textarea").forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
       const name = field.name;
-
+console.log(field.name);
       try {
         this['check' + name.charAt(0).toUpperCase() + name.slice(1)]();
+        console.log(this['check' + name.charAt(0).toUpperCase() + name.slice(1)]());
         console.log(name + " est valide.");
         //field.classList.remove('is-invalid');
         //field.classList.add('is-valid');
