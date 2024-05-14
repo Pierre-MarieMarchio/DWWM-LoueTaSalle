@@ -1,7 +1,6 @@
 import Components from "../../classes/Components";
 import ContactService from "../../services/Contact.Services";
 
-
 export default class FormContactComponent extends Components {
   private _formdataContact: any;
   private _formContact: HTMLFormElement;
@@ -21,7 +20,6 @@ export default class FormContactComponent extends Components {
     this._contactService.validateForm();
     //TODO if validateform true then make it to local storage else error message
     this._contactService.createContactForm();
-   
   };
   protected override render(): string {
     return `
@@ -43,7 +41,7 @@ export default class FormContactComponent extends Components {
               <div class="col mb-3">
                 <input
                   type="lastname"
-                  name="Nom"
+                  name="lastname"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Nom *"
