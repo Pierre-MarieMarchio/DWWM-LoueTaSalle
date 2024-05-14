@@ -19,9 +19,9 @@ export default class FormContactComponent extends Components {
     this._formdataContact = entries;
     this._contactService.formdataContact = this._formdataContact;
     this._contactService.validateForm();
-
-    console.log(entries);
-    // return entries;
+    //TODO if validateform true then make it to local storage else error message
+    this._contactService.createContactForm();
+   
   };
   protected override render(): string {
     return `
