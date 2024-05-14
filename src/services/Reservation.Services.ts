@@ -150,27 +150,44 @@ export default class ReservationService {
       const eventHourInt = parseInt(eventHourString);
       return this._formdata.eventHour;
     } else {
-      throw new Error("L'heure de l'évènement n'est pas un string");
+      throw new Error("L'heure de l'évènement n'est pas un string.");
     }
   }
 
   private checkEventDistrict(): string {
 
-    if (typeof this._formdata.checkEventDistrict === "string") {
-      return this._formdata.checkEventDistrict;
-
+    if (typeof this._formdata.eventDistrict === "string") {
+      const eventDistrictInt = parseInt(this._formdata.eventDistrict);
+      if (eventDistrictInt > 0 && eventDistrictInt < 4) {
+        return this._formdata.eventDistrict;
+      } else {
+        throw new Error("Le département de l'évènement sélectionné n'est pas valide.");
+      }
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("Le département de l'évènement n'est pas un string.");
     }
   }
 
-  private checkEventPeople(): number {
+  private checkEventPeople(): string {
 
-    if (typeof this._formdata.checkEventPeople === "string") {
-      return this._formdata.checkEventPeople;
+    function testEventPeople(eventPeople: string) {
+      var re = /^\d+$/;
+      return re.test(eventPeople);
+    }
 
+    if (typeof this._formdata.eventPeople === "string") {
+      if (testEventPeople(this._formdata.eventPeople)) {
+        const eventPeopleInt = parseInt(this._formdata.eventPeople);
+        if (eventPeopleInt > 0) {
+          return this._formdata.eventPeople;
+        } else {
+          throw new Error("Le nombre de participant n'est pas supérieur à 0.");
+        }
+      } else {
+        throw new Error("Le nombre de participants n'est pas un/des chiffre(s).");
+      }
     } else {
-      throw new Error("n'est pas un number");
+      throw new Error("Le nombre de participants n'est pas un string.");
     }
   }
 
