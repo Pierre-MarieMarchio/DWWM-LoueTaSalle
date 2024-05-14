@@ -49,10 +49,10 @@ export default class BookingModel {
       }
 
     } else {
-      throw new Error("Le nom de famille n'est pas une chaîne de caractères");
+      throw new Error("Le nom de famille n'est pas une chaîne de caractères.");
     }
   }
-  
+
   private checkFirstName(): string {
 
     if (typeof this._formdata.firstName === "string") {
@@ -63,20 +63,29 @@ export default class BookingModel {
       }
 
     } else {
-      throw new Error("Le prénom n'est pas un string");
+      throw new Error("Le prénom n'est pas un string.");
     }
   }
-  
+
   private checkEmail(): string {
+    function checkEmail(email: string) {
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
 
     if (typeof this._formdata.email === 'string') {
-      return this._formdata.email;
+      try {
+        checkEmail(this._formdata.email) 
+        return this._formdata.email;
+      } catch (error) {
+        throw new Error("L'adresse email n'est pas valide.");
+      }
 
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("L'adresse email n'est pas un string.");
     }
   }
-  
+
   private checkCellphone(): number {
 
     if (typeof this._formdata.cellphone === 'number') {
@@ -86,7 +95,7 @@ export default class BookingModel {
       throw new Error("n'est pas un number");
     }
   }
-  
+
   private checkEventNature(): string {
 
     if (typeof this._formdata.eventNature === 'string') {
@@ -96,7 +105,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventDate(): Date {
 
     const dateString = this._formdata.eventDate;
@@ -112,7 +121,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventHour(): string {
 
     if (typeof this._formdata.checkEventHour === "string") {
@@ -122,7 +131,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventDistrict(): string {
 
     if (typeof this._formdata.checkEventDistrict === "string") {
@@ -132,7 +141,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventPeople(): number {
 
     if (typeof this._formdata.checkEventPeople === "string") {
@@ -142,7 +151,7 @@ export default class BookingModel {
       throw new Error("n'est pas un number");
     }
   }
-  
+
   private checkEventAgeAverage(): string {
 
     if (typeof this._formdata.checkEventAgeAverage === "string") {
@@ -152,7 +161,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventPreferredCity(): string {
 
     if (typeof this._formdata.checkEventPreferredCity === "string") {
@@ -162,7 +171,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventVenue(): string {
 
     if (typeof this._formdata.checkEventVenue === "string") {
@@ -172,7 +181,7 @@ export default class BookingModel {
       throw new Error("n'est pas un string");
     }
   }
-  
+
   private checkEventType(): string {
 
     if (typeof this._formdata.eventType === 'string' && this._formdata.eventType !== '') {
@@ -182,7 +191,7 @@ export default class BookingModel {
       throw new Error("eventType est vide ou n'est pas un string");
     }
   }
-  
+
   private checkEventCaterer(): string {
 
     if (typeof this._formdata.eventCaterer === 'string' && this._formdata.eventCaterer !== '') {
@@ -192,7 +201,7 @@ export default class BookingModel {
       throw new Error("eventCaterer est vide ou n'est pas un string");
     }
   }
-  
+
   private checkEventQuotation(): string {
 
     if (typeof this._formdata.eventQuotation === 'string' && this._formdata.eventQuotation !== '') {
@@ -202,7 +211,7 @@ export default class BookingModel {
       throw new Error("eventQuotation est vide ou n'est pas un string");
     }
   }
-  
+
   private checkEventBudget(): number {
 
     const budget = Number(this._formdata.eventBudget);
@@ -213,7 +222,7 @@ export default class BookingModel {
       throw new Error("eventBudget n'est pas un number valide");
     }
   }
-  
+
   private checkEventAccomodation(): string {
 
     if (typeof this._formdata.eventAccomodation === 'string' && this._formdata.eventAccomodation !== '') {
@@ -223,7 +232,7 @@ export default class BookingModel {
       throw new Error("eventAccomodation est vide ou n'est pas un string");
     }
   }
-  
+
   private checkEventBedding(): number {
 
     const bedding = Number(this._formdata.eventBedding);
@@ -234,7 +243,7 @@ export default class BookingModel {
       throw new Error("eventBedding n'est pas un number valide");
     }
   }
-  
+
   private checkEventDetails(): string {
 
     if (typeof this._formdata.eventDetails === 'string' && this._formdata.eventDetails !== '') {
@@ -244,7 +253,7 @@ export default class BookingModel {
       throw new Error("eventDetails est vide ou n'est pas un string");
     }
   }
-  
+
   private checkCguCheck(): boolean {
 
     if (typeof this._formdata.cguChecked === 'boolean' && this._formdata.cguChecked === true) {
