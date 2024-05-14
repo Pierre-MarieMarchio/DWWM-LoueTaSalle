@@ -62,7 +62,7 @@ export default class FormReservation extends Components {
               type="text"
               name="cellphone"
               class="form-control"
-              placeholder="06 00 00 00 00"
+              placeholder="0600000000"
             />
           </div>
         </div>
@@ -93,7 +93,7 @@ export default class FormReservation extends Components {
         <div class="row">
           <div class="col mb-3">
             <input
-              type="text"
+              type="date"
               name="eventDate"
               class="form-control"
               placeholder="Date de votre événement *"

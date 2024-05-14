@@ -28,6 +28,7 @@ export default class ReservationService {
     cguChecked: true,
   };
 
+
   constructor(formSubmit: any, form: HTMLElement) {
     this._form = form;
     this._formdata = formSubmit;
@@ -47,119 +48,156 @@ export default class ReservationService {
       } else {
         throw new Error("Le nom de famille est soit trop court, soit trop long.");
       }
+
     } else {
       throw new Error("Le nom de famille n'est pas une chaîne de caractères.");
     }
   }
 
   private checkFirstName(): string {
+
+
     if (typeof this._formdata.firstName === "string") {
-      if (this._formdata.firstName > 1 && this._formdata.firstName < 42) {
+      if (this._formdata.firstName.length > 1 && this._formdata.firstName.length < 42) {
+
         return this._formdata.firstName;
       } else {
         throw new Error("Le prénom est soit trop court, soit trop long.");
       }
+
     } else {
       throw new Error("Le prénom n'est pas un string.");
     }
   }
 
   private checkEmail(): string {
-    function checkEmail(email: string) {
-      var re =
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    function testEmail(email: string) {
+      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return re.test(email);
     }
 
-    if (typeof this._formdata.email === "string") {
-      try {
-        checkEmail(this._formdata.email);
-        return this._formdata.email;
-      } catch (error) {
-        throw new Error("L'adresse email n'est pas valide.");
+    if (typeof this._formdata.email === 'string') {
+      if (this._formdata.email.length > 3 && this._formdata.email.length < 42) {
+        if (testEmail(this._formdata.email)) {
+          return this._formdata.email;
+        } else {
+          throw new Error("L'email est dans un format invalide.");
+        }
+      } else {
+        throw new Error("L'email est soit trop court, soit trop long.");
       }
     } else {
-      throw new Error("L'adresse email n'est pas un string.");
+      throw new Error("L'email n'est pas un string.");
     }
   }
 
-  private checkCellphone(): number {
-    if (typeof this._formdata.cellphone === "number") {
-      return this._formdata.cellphone;
+  private checkCellphone(): string {
+
+    function testCellphone(cellphone: string) {
+      var re = /^(\d{10})$/;
+      return re.test(cellphone);
+    }
+
+    if (typeof this._formdata.cellphone === 'string') {
+      if (this._formdata.cellphone.length == 10) {
+        if (testCellphone(this._formdata.cellphone)) {
+          return this._formdata.cellphone;
+        } else {
+          throw new Error("Le numéro de téléphone ne comprends pas 10 chiffres.");
+        }
+      } else {
+        throw new Error("Le numéro de téléphone n'est pas à 10 caractères.");
+      }
     } else {
-      throw new Error("n'est pas un number");
+      throw new Error("Le numéro de téléphone n'est pas un string.");
     }
   }
 
   private checkEventNature(): string {
-    if (typeof this._formdata.eventNature === "string") {
-      return this._formdata.eventNature;
+
+    if (typeof this._formdata.eventNature === 'string') {
+      const eventNatureInt = parseInt(this._formdata.eventNature);
+      if (eventNatureInt > 0 && eventNatureInt < 15) {
+        return this._formdata.eventNature;
+      } else {
+        throw new Error("La nature de l'évènement sélectionnée n'est pas valide.");
+      }
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("La nature de l'évènement n'est pas un string.");
     }
   }
 
   private checkEventDate(): Date {
-    const dateString = this._formdata.eventDate;
-    if (typeof dateString === "string") {
-      const date = new Date(dateString);
+
+    const eventDateString = this._formdata.eventDate;
+    if (typeof eventDateString === 'string') {
+      const date = new Date(eventDateString);
       if (!isNaN(date.getTime())) {
         return date;
       } else {
-        throw new Error("n'est pas une date valide");
+        throw new Error("La date de l'évènement n'est pas une date valide.");
       }
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("La date de l'évènement n'est pas un string.");
     }
   }
 
   private checkEventHour(): string {
-    if (typeof this._formdata.checkEventHour === "string") {
-      return this._formdata.checkEventHour;
+
+    if (typeof this._formdata.eventHour === "string") {
+      const eventHourString = this._formdata.eventHour.replace(":", "");
+      const eventHourInt = parseInt(eventHourString);
+      return this._formdata.eventHour;
     } else {
-      throw new Error("n'est pas un string");
+      throw new Error("L'heure de l'évènement n'est pas un string");
     }
   }
 
   private checkEventDistrict(): string {
+
     if (typeof this._formdata.checkEventDistrict === "string") {
       return this._formdata.checkEventDistrict;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
 
   private checkEventPeople(): number {
+
     if (typeof this._formdata.checkEventPeople === "string") {
       return this._formdata.checkEventPeople;
+
     } else {
       throw new Error("n'est pas un number");
     }
   }
 
   private checkEventAgeAverage(): string {
+
     if (typeof this._formdata.checkEventAgeAverage === "string") {
       return this._formdata.checkEventAgeAverage;
-    } else {
-      throw new Error("n'est pas un string");
-    }
-  }
+
 
   private checkEventPreferredCity(): string {
-    if (typeof this._formdata.checkEventPreferredCity === "string") {
-      return this._formdata.checkEventPreferredCity;
+    if (typeof this._formdata.eventPreferredCity === "string") {
+      return this._formdata.eventPreferredCity;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
 
   private checkEventVenue(): string {
-    if (typeof this._formdata.checkEventVenue === "string") {
-      return this._formdata.checkEventVenue;
+    if (typeof this._formdata.eventVenue === "string") {
+      return this._formdata.eventVenue;
+
     } else {
       throw new Error("n'est pas un string");
     }
   }
+
 
   private checkEventType(): string {
     if (typeof this._formdata.eventType === "string" && this._formdata.eventType !== "") {
