@@ -181,6 +181,10 @@ export default class ReservationService {
     if (typeof this._formdata.checkEventAgeAverage === "string") {
       return this._formdata.checkEventAgeAverage;
 
+    } else {
+
+    }
+  }
 
   private checkEventPreferredCity(): string {
     if (typeof this._formdata.eventPreferredCity === "string") {
