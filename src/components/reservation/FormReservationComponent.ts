@@ -1,19 +1,24 @@
 import Components from "../../classes/Components";
+import BookingModel from "../../models/ReservationModel";
 
 export default class FormReservation extends Components {
   private _formdata: any;
   private _form: HTMLFormElement;
+  private _bookingModel: BookingModel;
 
   constructor() {
     super()
     this._form = this.querySelector("#reservationForm");
     this._form.onsubmit = this.handleReservationSubmit;
+    this._bookingModel = new BookingModel(null, this._form);
   }
 
   handleReservationSubmit = (e: SubmitEvent): void => {
     e.preventDefault();
     let entries = Object.fromEntries(new FormData(this._form));
     this._formdata = entries;
+    this._bookingModel.formdata = this._formdata;
+    this._bookingModel.validateForm();
   }
 
   protected override render(): string {
