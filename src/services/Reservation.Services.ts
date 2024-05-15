@@ -1,10 +1,10 @@
 import ReservationModel from "../models/ReservationModel";
-import Services from "./Services"
+import FormBaseServices from "./FormBase.Services"
 
-export default class ReservationService extends Services<ReservationModel> {
+export default class ReservationService extends FormBaseServices<ReservationModel> {
 
 
-  constructor(formSubmit: any, form: HTMLElement) {
+  constructor(formSubmit: any, form: HTMLFormElement) {
     super(formSubmit, form);
   
   }

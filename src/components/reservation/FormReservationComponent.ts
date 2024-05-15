@@ -18,9 +18,9 @@ export default class FormReservation extends Components {
     let entries = Object.fromEntries(new FormData(this._form));
     this._formdata = entries;
     this._reservationService.formdata = this._formdata;
-    const isReservation = this._reservationService.validateForm();
+    this._reservationService.validateAllFields();
 
-    if (isReservation) {
+    if (this._reservationService.formIsValid) {
       console.log("c'est bon");
       
       this._reservationService.createReservation();
