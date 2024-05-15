@@ -206,10 +206,15 @@ export default class ReservationService {
   }
 
   private checkEventType(): string {
-    if (typeof this._formdata.eventType === "string" && this._formdata.eventType !== "") {
-      return this._formdata.eventType;
+    if (typeof this._formdata.eventType === "string") {
+      const eventTypeInt = parseInt(this._formdata.eventType);
+      if (eventTypeInt > 0 && eventTypeInt < 4) {
+        return this._formdata.eventType;
+      } else {
+        throw new Error("Le type d'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventType est vide ou n'est pas un string");
+      throw new Error("Le type d'évènement n'est pas un string.");
     }
   }
 
