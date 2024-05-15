@@ -290,11 +290,16 @@ export default class ReservationService {
     }
   }
 
-  private checkCguCheck(): boolean {
-    if (typeof this._formdata.cguChecked === "boolean" && this._formdata.cguChecked === true) {
-      return this._formdata.cguChecked;
+  private checkCguCheck(): string {
+    if (typeof this._formdata.cguCheck === "string") {
+      const cguCheck = Boolean(this._formdata.cguCheck);
+      if (this._formdata.cguCheck) {
+        return this._formdata.cguCheck;
+      } else {
+        throw new Error("Les CGU ne sont pas cochés.");
+      }
     } else {
-      throw new Error("cguChecked n'est pas coché ou n'est pas un boolean");
+      throw new Error("Les CGU n'est pas un boolean.");
     }
   }
 
