@@ -243,12 +243,16 @@ export default class ReservationService {
     }
   }
 
-  private checkEventBudget(): number {
-    const budget = Number(this._formdata.eventBudget);
-    if (!isNaN(budget) && budget >= 0) {
-      return budget;
+  private checkEventBudget(): string {
+    if (typeof this._formdata.eventBudget === "string") {
+      const eventBudgetInt = parseInt(this._formdata.eventBudget);
+      if (eventBudgetInt > 0) {
+        return this._formdata.eventBudget;
+      } else {
+        throw new Error("Le budget de l'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventBudget n'est pas un number valide");
+      throw new Error("Le budget de l'évènement n'est pas un string.");
     }
   }
 
