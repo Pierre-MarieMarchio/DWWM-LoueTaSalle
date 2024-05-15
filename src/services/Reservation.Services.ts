@@ -219,10 +219,15 @@ export default class ReservationService {
   }
 
   private checkEventCaterer(): string {
-    if (typeof this._formdata.eventCaterer === "string" && this._formdata.eventCaterer !== "") {
-      return this._formdata.eventCaterer;
+    if (typeof this._formdata.eventCaterer === "string") {
+      const eventCatererInt = parseInt(this._formdata.eventCaterer);
+      if (eventCatererInt > 0 && eventCatererInt < 3) {
+        return this._formdata.eventCaterer;
+      } else {
+        throw new Error("Le choix d'un traiteur n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventCaterer est vide ou n'est pas un string");
+      throw new Error("Le choix d'un traiteur n'est pas un string.");
     }
   }
 
