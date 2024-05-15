@@ -238,7 +238,7 @@ export default class FormReservation extends Components {
             class="form-check-input"
             id="exampleCheck1"
           />
-          <label class="form-check-label" for="exampleCheck1"
+          <label class="form-check-label" for="cguCheck"
             >J’accepte les conditions générales d'utilisation</label
           >
         </div>
