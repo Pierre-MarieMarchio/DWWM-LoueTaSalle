@@ -1,20 +1,12 @@
 import ReservationModel from "../models/ReservationModel";
+import Services from "./Services"
 
-export default class ReservationService {
-  private _formdata: any;
-  private _form: HTMLElement;
-  private _formresult: ReservationModel;
-  private _formresultArray: ReservationModel[] = [];
+export default class ReservationService extends Services<ReservationModel> {
+
 
   constructor(formSubmit: any, form: HTMLElement) {
-    this._form = form;
-    this._formdata = formSubmit;
-  }
-
-  [key: string]: any;
-
-  set formdata(data: any) {
-    this._formdata = data;
+    super(formSubmit, form);
+  
   }
 
   private checkLastName(): string {
@@ -298,8 +290,8 @@ export default class ReservationService {
     }
   }
 
-  public validateForm() {
-    let isValid: boolean = false;
+  public validateForm(): boolean {
+    let isValid: boolean = true;
 
     let formResult: ReservationModel = {
       lastName: null,
@@ -329,38 +321,39 @@ export default class ReservationService {
       .forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
         if (field.type !== "submit") {
           const name = field.name;
+          const methodName = "check" + name.charAt(0).toUpperCase() + name.slice(1);
 
-          try {
-            const result = this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
-            console.log(name + " c'est validé");
-            field.classList.remove("is-invalid");
-            field.classList.add("is-valid");
-            if (formResult.hasOwnProperty(name)) {
-              isValid = true;
-              formResult[name] = result;
+          if (typeof this[methodName] === "function") {
+            try {
+              const result = (this as any)[methodName]();
+              console.log(name + " c'est validé");
+              field.classList.remove("is-invalid");
+              field.classList.add("is-valid");
+              if (formResult.hasOwnProperty(name)) {
+                formResult[name] = result;
+              }
+            } catch (error) {
+              console.log(name + " c'est pas validé");
+              field.classList.remove("is-valid");
+              field.classList.add("is-invalid");
+              isValid = false;
             }
-          } catch (error) {
-            console.log(name + " c'est pas validé");
-            field.classList.remove("is-valid");
-            field.classList.add("is-invalid");
-            isValid = false;
           }
         }
       });
 
     if (isValid) {
-      this._formresult = formResult;
-      this._formresultArray.push(this._formresult)
-      console.log(this._formresult);
+      this._formResult = formResult;
+      this._formResultArray.push(this._formResult);
+      console.log(this._formResult);
     }
-
 
     return isValid;
   }
 
   public createReservation(): void {
-    if (this._formresult) {
-      localStorage.setItem("Reservation", JSON.stringify(this._formresultArray));
+    if (this._formResult) {
+      localStorage.setItem("Reservation", JSON.stringify(this._formResultArray));
     }
     return;
   }
