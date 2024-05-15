@@ -270,11 +270,15 @@ export default class ReservationService {
   }
 
   private checkEventBedding(): string {
-    const bedding = Number(this._formdata.eventBedding);
-    if (!isNaN(bedding) && bedding >= 0) {
-      return bedding;
+    if (typeof this._formdata.eventBedding === "string") {
+      const eventBeddingInt = parseInt(this._formdata.eventBedding);
+      if (eventBeddingInt >= 0) {
+        return this._formdata.eventBedding;
+      } else {
+        throw new Error("Le nombre de couchages de l'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventBedding n'est pas un number valide");
+      throw new Error("Le nombre de couchages de l'évènement n'est pas un string.");
     }
   }
 
