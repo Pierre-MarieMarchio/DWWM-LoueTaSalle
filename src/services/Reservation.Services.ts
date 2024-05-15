@@ -115,13 +115,14 @@ export default class ReservationService {
       const eventHourString = this._formdata.eventHour.replace(":", "");
       const eventHourInt = parseInt(eventHourString);
       return this._formdata.eventHour;
+    } else if (!this._formdata.eventHour.value) {
+      throw new Error("L'heure de l'évènement n'est pas indiquée.");
     } else {
       throw new Error("L'heure de l'évènement n'est pas un string.");
     }
   }
 
   private checkEventDistrict(): string {
-
     if (typeof this._formdata.eventDistrict === "string") {
       const eventDistrictInt = parseInt(this._formdata.eventDistrict);
       if (eventDistrictInt > 0 && eventDistrictInt < 4) {
@@ -323,7 +324,7 @@ export default class ReservationService {
       this._formresultArray.push(this._formresult)
       console.log(this._formresult);
     }
-    
+
 
     return isValid;
   }
@@ -331,7 +332,7 @@ export default class ReservationService {
   public createReservation(): void {
     if (this._formresult) {
       localStorage.setItem("Reservation", JSON.stringify(this._formresultArray));
-    } 
+    }
     return;
   }
 }
