@@ -232,10 +232,14 @@ export default class ReservationService {
   }
 
   private checkEventQuotation(): string {
-    if (typeof this._formdata.eventQuotation === "string" && this._formdata.eventQuotation !== "") {
-      return this._formdata.eventQuotation;
+    if (typeof this._formdata.eventQuotation === "string") {
+      const eventQuotationInt = parseInt(this._formdata.eventQuotation);
+      if (eventQuotationInt > 0 && eventQuotationInt < 6) {
+        return this._formdata.eventQuotation;
+      }
+      throw new Error("Le nombre de devis n'est pas rempli.");
     } else {
-      throw new Error("eventQuotation est vide ou n'est pas un string");
+      throw new Error("Le nombre de devis n'est pas un string.");
     }
   }
 
