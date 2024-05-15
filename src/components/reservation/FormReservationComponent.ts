@@ -21,6 +21,8 @@ export default class FormReservation extends Components {
     const isReservation = this._reservationService.validateForm();
 
     if (isReservation) {
+      console.log("c'est bon");
+      
       this._reservationService.createReservation();
     } else {
       console.error("Reservation not good");
