@@ -257,14 +257,19 @@ export default class ReservationService {
   }
 
   private checkEventAccomodation(): string {
-    if (typeof this._formdata.eventAccomodation === "string" && this._formdata.eventAccomodation !== "") {
-      return this._formdata.eventAccomodation;
+    if (typeof this._formdata.eventAccomodation === "string") {
+      const eventAccomodationInt = parseInt(this._formdata.eventAccomodation);
+      if (eventAccomodationInt > 0 && eventAccomodationInt < 3) {
+        return this._formdata.eventAccomodation;
+      } else {
+        throw new Error("L'hébergement de l'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventAccomodation est vide ou n'est pas un string");
+      throw new Error("L'hébergement de l'évènement n'est pas un string.");
     }
   }
 
-  private checkEventBedding(): number {
+  private checkEventBedding(): string {
     const bedding = Number(this._formdata.eventBedding);
     if (!isNaN(bedding) && bedding >= 0) {
       return bedding;
