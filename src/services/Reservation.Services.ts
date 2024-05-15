@@ -114,10 +114,12 @@ export default class ReservationService {
     if (typeof this._formdata.eventHour === "string") {
       const eventHourString = this._formdata.eventHour.replace(":", "");
       const eventHourInt = parseInt(eventHourString);
+      if (!this._formdata.eventHour) {
+        throw new Error("L'heure de l'évènement n'est pas indiquée.");
+      }
       return this._formdata.eventHour;
-    } else if (!this._formdata.eventHour.value) {
-      throw new Error("L'heure de l'évènement n'est pas indiquée.");
-    } else {
+    }
+    else {
       throw new Error("L'heure de l'évènement n'est pas un string.");
     }
   }
