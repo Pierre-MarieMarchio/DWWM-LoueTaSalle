@@ -114,14 +114,17 @@ export default class ReservationService {
     if (typeof this._formdata.eventHour === "string") {
       const eventHourString = this._formdata.eventHour.replace(":", "");
       const eventHourInt = parseInt(eventHourString);
+      if (!this._formdata.eventHour) {
+        throw new Error("L'heure de l'évènement n'est pas indiquée.");
+      }
       return this._formdata.eventHour;
-    } else {
+    }
+    else {
       throw new Error("L'heure de l'évènement n'est pas un string.");
     }
   }
 
   private checkEventDistrict(): string {
-
     if (typeof this._formdata.eventDistrict === "string") {
       const eventDistrictInt = parseInt(this._formdata.eventDistrict);
       if (eventDistrictInt > 0 && eventDistrictInt < 4) {
@@ -203,52 +206,79 @@ export default class ReservationService {
   }
 
   private checkEventType(): string {
-    if (typeof this._formdata.eventType === "string" && this._formdata.eventType !== "") {
-      return this._formdata.eventType;
+    if (typeof this._formdata.eventType === "string") {
+      const eventTypeInt = parseInt(this._formdata.eventType);
+      if (eventTypeInt > 0 && eventTypeInt < 4) {
+        return this._formdata.eventType;
+      } else {
+        throw new Error("Le type d'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventType est vide ou n'est pas un string");
+      throw new Error("Le type d'évènement n'est pas un string.");
     }
   }
 
   private checkEventCaterer(): string {
-    if (typeof this._formdata.eventCaterer === "string" && this._formdata.eventCaterer !== "") {
-      return this._formdata.eventCaterer;
+    if (typeof this._formdata.eventCaterer === "string") {
+      const eventCatererInt = parseInt(this._formdata.eventCaterer);
+      if (eventCatererInt > 0 && eventCatererInt < 3) {
+        return this._formdata.eventCaterer;
+      } else {
+        throw new Error("Le choix d'un traiteur n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventCaterer est vide ou n'est pas un string");
+      throw new Error("Le choix d'un traiteur n'est pas un string.");
     }
   }
 
   private checkEventQuotation(): string {
-    if (typeof this._formdata.eventQuotation === "string" && this._formdata.eventQuotation !== "") {
-      return this._formdata.eventQuotation;
+    if (typeof this._formdata.eventQuotation === "string") {
+      const eventQuotationInt = parseInt(this._formdata.eventQuotation);
+      if (eventQuotationInt > 0 && eventQuotationInt < 6) {
+        return this._formdata.eventQuotation;
+      }
+      throw new Error("Le nombre de devis n'est pas rempli.");
     } else {
-      throw new Error("eventQuotation est vide ou n'est pas un string");
+      throw new Error("Le nombre de devis n'est pas un string.");
     }
   }
 
-  private checkEventBudget(): number {
-    const budget = Number(this._formdata.eventBudget);
-    if (!isNaN(budget) && budget >= 0) {
-      return budget;
+  private checkEventBudget(): string {
+    if (typeof this._formdata.eventBudget === "string") {
+      const eventBudgetInt = parseInt(this._formdata.eventBudget);
+      if (eventBudgetInt > 0) {
+        return this._formdata.eventBudget;
+      } else {
+        throw new Error("Le budget de l'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventBudget n'est pas un number valide");
+      throw new Error("Le budget de l'évènement n'est pas un string.");
     }
   }
 
   private checkEventAccomodation(): string {
-    if (typeof this._formdata.eventAccomodation === "string" && this._formdata.eventAccomodation !== "") {
-      return this._formdata.eventAccomodation;
+    if (typeof this._formdata.eventAccomodation === "string") {
+      const eventAccomodationInt = parseInt(this._formdata.eventAccomodation);
+      if (eventAccomodationInt > 0 && eventAccomodationInt < 3) {
+        return this._formdata.eventAccomodation;
+      } else {
+        throw new Error("L'hébergement de l'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventAccomodation est vide ou n'est pas un string");
+      throw new Error("L'hébergement de l'évènement n'est pas un string.");
     }
   }
 
-  private checkEventBedding(): number {
-    const bedding = Number(this._formdata.eventBedding);
-    if (!isNaN(bedding) && bedding >= 0) {
-      return bedding;
+  private checkEventBedding(): string {
+    if (typeof this._formdata.eventBedding === "string") {
+      const eventBeddingInt = parseInt(this._formdata.eventBedding);
+      if (eventBeddingInt >= 0) {
+        return this._formdata.eventBedding;
+      } else {
+        throw new Error("Le nombre de couchages de l'évènement n'est pas rempli.");
+      }
     } else {
-      throw new Error("eventBedding n'est pas un number valide");
+      throw new Error("Le nombre de couchages de l'évènement n'est pas un string.");
     }
   }
 
@@ -260,11 +290,16 @@ export default class ReservationService {
     }
   }
 
-  private checkCguCheck(): boolean {
-    if (typeof this._formdata.cguChecked === "boolean" && this._formdata.cguChecked === true) {
-      return this._formdata.cguChecked;
+  private checkCguCheck(): string {
+    if (typeof this._formdata.cguCheck === "string") {
+      const cguCheck = Boolean(this._formdata.cguCheck);
+      if (this._formdata.cguCheck) {
+        return this._formdata.cguCheck;
+      } else {
+        throw new Error("Les CGU ne sont pas cochés.");
+      }
     } else {
-      throw new Error("cguChecked n'est pas coché ou n'est pas un boolean");
+      throw new Error("Les CGU n'est pas un boolean.");
     }
   }
 
@@ -323,7 +358,7 @@ export default class ReservationService {
       this._formresultArray.push(this._formresult)
       console.log(this._formresult);
     }
-    
+
 
     return isValid;
   }
@@ -331,7 +366,7 @@ export default class ReservationService {
   public createReservation(): void {
     if (this._formresult) {
       localStorage.setItem("Reservation", JSON.stringify(this._formresultArray));
-    } 
+    }
     return;
   }
 }
