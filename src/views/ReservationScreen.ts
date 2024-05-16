@@ -2,11 +2,12 @@ import FormReservationComponent from "../components/reservation/FormReservationC
 import ReservationStepsComponent from "../components/reservation/ReservationStepsComponent";
 import Screen from "../classes/Screen";
 
-export default class ResevationScreen extends Screen {
+export default class ReservationScreen extends Screen {
   constructor() {
     super();
 
-    this._props.suggestion = new FormReservationComponent();
+    this._props.formreservation = new FormReservationComponent();
+    this._props.reservationsteps = new ReservationStepsComponent();
 
     this.innerHTML = this.render();
   }
@@ -29,4 +30,4 @@ export default class ResevationScreen extends Screen {
   }
 }
 
-customElements.define("resevation-screen", ResevationScreen);
+customElements.define("reservation-screen", ReservationScreen);
