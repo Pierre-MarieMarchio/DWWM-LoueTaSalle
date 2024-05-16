@@ -33,4 +33,4 @@ export default class ReservationSteps extends Components {
     }
 }
 
-customElements.define("reservation-steps", ReservationSteps);
+customElements.define("reservation-steps-component", ReservationSteps);

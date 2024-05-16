@@ -1,4 +1,5 @@
 import FormReservationComponent from "../components/reservation/FormReservationComponent";
+import ReservationStepsComponent from "../components/reservation/ReservationStepsComponent";
 import Screen from "../classes/Screen";
 
 export default class ResevationScreen extends Screen {
@@ -13,11 +14,14 @@ export default class ResevationScreen extends Screen {
   protected override render(): string {
     return `
     <div>
-     <header-component/>
+      <header-component/>
     </div>
     <div>
-    <formreservation-component/>
-   </div>
+      <reservation-steps-component/>
+    </div>
+    <div>
+      <formreservation-component/>
+    </div>
     <div>
       <footer-component/>
     </div>
