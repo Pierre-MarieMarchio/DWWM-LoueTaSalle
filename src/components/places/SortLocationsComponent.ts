@@ -126,4 +126,4 @@ export default class SortLocationsMenu extends Components {
     }
   }
   
-  customElements.define("sort-locations-menu", SortLocationsMenu);
+  customElements.define("sort-locations-menu-component", SortLocationsMenu);

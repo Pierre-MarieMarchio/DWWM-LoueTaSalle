@@ -106,4 +106,4 @@ export default class ListVenues extends Components {
   }
 }
 
-customElements.define("list-venues", ListVenues);
+customElements.define("list-venues-component", ListVenues);
