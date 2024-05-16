@@ -1,4 +1,5 @@
 export default interface ContactModelModel {
+  [key: string]: string;
   company: string;
   lastname: string;
   firstname: string;

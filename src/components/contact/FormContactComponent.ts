@@ -99,7 +99,6 @@ export default class FormContactComponent extends Components {
                 id="validationTextarea"
                 name="validationTextarea"
                 placeholder="Votre demande *"
-                required
               ></textarea>
             </div>
           </div>
