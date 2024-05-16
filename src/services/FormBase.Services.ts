@@ -6,13 +6,15 @@ export default abstract class FormBaseServices<T> {
   protected _formResult: FormModel;
   protected _formResultArray: Array<T> = [];
   protected _formIsValid: boolean;
+  protected _localItem: string;
   [key: string]: any;
 
-  constructor(formSubmit: any, form: HTMLFormElement) {
+  constructor(formSubmit: any, localItem: string, form: HTMLFormElement) {
     this._form = form;
     this._formdata = formSubmit;
     this._formResult = {};
     this._formIsValid = false;
+    this._localItem = localItem;
   }
 
   set formdata(data: any) {
@@ -29,7 +31,7 @@ export default abstract class FormBaseServices<T> {
     methodName: string
   ): boolean {
     try {
-      const result = this[methodName as keyof this](); // TODO COMPRENDRE ET REECRIRE
+      const result = this[methodName]();
       field.classList.remove("is-invalid");
       field.classList.add("is-valid");
       this._formResult[fieldName] = result;
@@ -43,7 +45,7 @@ export default abstract class FormBaseServices<T> {
     }
   }
 
-  public validateAllFields(): void {
+  public validateForm(): void {
     let isValid: boolean = false;
     if (this._form) {
       this._form
@@ -61,11 +63,15 @@ export default abstract class FormBaseServices<T> {
     this._formIsValid = isValid;
   }
 
-  public createReservation(): void {
+  public create(): void {
     if (this._formResultArray) {
-      localStorage.setItem("Reservation", JSON.stringify(this._formResultArray));
+      localStorage.setItem(this.localItem, JSON.stringify(this._formResultArray));
       this._formIsValid = false;
     }
     return;
+  }
+
+  public read(): void {
+    const localValue = localStorage.getItem(this.localItem);
   }
 }

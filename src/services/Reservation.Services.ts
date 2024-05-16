@@ -4,8 +4,8 @@ import FormBaseServices from "./FormBase.Services"
 export default class ReservationService extends FormBaseServices<ReservationModel> {
 
 
-  constructor(formSubmit: any, form: HTMLFormElement) {
-    super(formSubmit, form);
+  constructor(formSubmit: any, localItem: string, form: HTMLFormElement) {
+    super(formSubmit, localItem, form);
   
   }
 
