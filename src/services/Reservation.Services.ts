@@ -1,20 +1,12 @@
 import ReservationModel from "../models/ReservationModel";
+import FormBaseServices from "./FormBase.Services"
 
-export default class ReservationService {
-  private _formdata: any;
-  private _form: HTMLElement;
-  private _formresult: ReservationModel;
-  private _formresultArray: ReservationModel[] = [];
+export default class ReservationService extends FormBaseServices<ReservationModel> {
 
-  constructor(formSubmit: any, form: HTMLElement) {
-    this._form = form;
-    this._formdata = formSubmit;
-  }
 
-  [key: string]: any;
-
-  set formdata(data: any) {
-    this._formdata = data;
+  constructor(formSubmit: any, localItem: string, form: HTMLFormElement) {
+    super(formSubmit, localItem, form);
+  
   }
 
   private checkLastName(): string {
@@ -303,70 +295,5 @@ export default class ReservationService {
     }
   }
 
-  public validateForm() {
-    let isValid: boolean = false;
-
-    let formResult: ReservationModel = {
-      lastName: null,
-      firstName: null,
-      email: null,
-      cellphone: null,
-      eventNature: null,
-      eventDate: null,
-      eventHour: null,
-      eventDistrict: null,
-      eventPeople: null,
-      eventAgeAverage: null,
-      eventPreferredCity: null,
-      eventVenue: null,
-      eventType: null,
-      eventCaterer: null,
-      eventQuotation: null,
-      eventBudget: null,
-      eventAccomodation: null,
-      eventBedding: null,
-      eventDetails: null,
-      cguChecked: null,
-    };
-
-    this._form
-      .querySelectorAll("input, select, textarea")
-      .forEach((field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
-        if (field.type !== "submit") {
-          const name = field.name;
-
-          try {
-            const result = this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
-            console.log(name + " c'est validé");
-            field.classList.remove("is-invalid");
-            field.classList.add("is-valid");
-            if (formResult.hasOwnProperty(name)) {
-              isValid = true;
-              formResult[name] = result;
-            }
-          } catch (error) {
-            console.log(name + " c'est pas validé");
-            field.classList.remove("is-valid");
-            field.classList.add("is-invalid");
-            isValid = false;
-          }
-        }
-      });
-
-    if (isValid) {
-      this._formresult = formResult;
-      this._formresultArray.push(this._formresult)
-      console.log(this._formresult);
-    }
-
-
-    return isValid;
-  }
-
-  public createReservation(): void {
-    if (this._formresult) {
-      localStorage.setItem("Reservation", JSON.stringify(this._formresultArray));
-    }
-    return;
-  }
+  
 }

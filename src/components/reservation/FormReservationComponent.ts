@@ -10,7 +10,7 @@ export default class FormReservation extends Components {
     super();
     this._form = this.querySelector("#reservationForm");
     this._form.onsubmit = this.handleReservationSubmit;
-    this._reservationService = new ReservationService(null, this._form);
+    this._reservationService = new ReservationService(null, 'reservationForm', this._form);
   }
 
   handleReservationSubmit = (e: SubmitEvent): void => {
@@ -18,10 +18,12 @@ export default class FormReservation extends Components {
     let entries = Object.fromEntries(new FormData(this._form));
     this._formdata = entries;
     this._reservationService.formdata = this._formdata;
-    const isReservation = this._reservationService.validateForm();
+    this._reservationService.validateForm();
 
-    if (isReservation) {
-      this._reservationService.createReservation();
+    if (this._reservationService.formIsValid) {
+      console.log("c'est bon");
+      
+      this._reservationService.create();
     } else {
       console.error("Reservation not good");
     }

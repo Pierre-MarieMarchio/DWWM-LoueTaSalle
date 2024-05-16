@@ -1,4 +1,6 @@
-export default interface ContactModelModel {
+import FormModel from './FormModel'
+
+export default interface ContactModelModel extends FormModel {
   company: string;
   lastname: string;
   firstname: string;

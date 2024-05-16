@@ -1,6 +1,6 @@
-export default interface ReservationModel {
+import FormModel from './FormModel'
 
-  [key: string]: string | number | Date | boolean;
+export default interface ReservationModel extends FormModel{
 
   lastName: string;
   firstName: string;
