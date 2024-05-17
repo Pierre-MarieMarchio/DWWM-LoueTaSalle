@@ -1,6 +1,6 @@
 import Components from "../../classes/Components";
 
-export default class Suggestions extends Components {
+export default class SuggestionsComponent extends Components {
     protected override render(): string {
         return `
         <div class="col-3">
@@ -30,4 +30,4 @@ export default class Suggestions extends Components {
     }
 }
 
-customElements.define("suggestions", Suggestions);
+customElements.define("suggestions-component", SuggestionsComponent);
