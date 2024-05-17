@@ -1,11 +1,11 @@
-import FormModel from './FormModel'
+import FormModel from "./FormModel";
 
-export default interface ReservationModel extends FormModel{
-
+export default interface ReservationModel extends FormModel {
+  id: string;
   lastName: string;
   firstName: string;
   email: string;
-  cellphone: number;
+  cellphone: string;
   eventNature: string;
   eventDate: Date;
   eventHour: string;
@@ -22,6 +22,4 @@ export default interface ReservationModel extends FormModel{
   eventBedding: number;
   eventDetails: string;
   cguChecked: boolean;
-  
 }
-

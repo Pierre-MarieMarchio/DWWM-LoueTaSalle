@@ -1,39 +1,69 @@
 import ContactModel from "../models/ContactModel";
+import FormBaseServices from "./FormBase.Services";
 
-export default class ContactService {
-  private _formdataContact: any;
-  private _form: HTMLElement;
-  private _formresult: ContactModel | null;
+export default class ContactService extends FormBaseServices<ContactModel> {
+ 
 
-  private _testData: ContactModel = {
-    company: "string",
-    lastname: "string",
-    firstname: "string",
-    country: "string",
-    city: "string",
-    number: "6060625",
-    validationTextarea: "string",
-    mail: "string",
-  };
-
-  constructor(formSubmit: any, form: HTMLElement) {
-    this._form = form;
-    this._formdataContact = formSubmit;
-    this._formresult = null;
+  constructor(formSubmit: any, keyItem: string, form: HTMLFormElement) {
+    super(formSubmit, keyItem, form)
+ 
   }
 
-  [key: string]: any;
+  protected validateFormResult(formResult: any): boolean {
 
-  set formdataContact(data: any) {
-    this._formdataContact = data;
+    console.log(formResult);
+    
+    if (typeof formResult.id !== "string") {
+      console.log(formResult.id);
+      
+      console.error("Invalid type for id:", typeof formResult.id);
+      return false;
+    }
+    if (typeof formResult.company !== "string") {
+      console.error("Invalid type for company:", typeof formResult.company);
+      return false;
+    }
+    if (typeof formResult.lastName !== "string") {
+      console.error("Invalid type for lastname:", typeof formResult.lastname);
+      return false;
+    }
+    if (typeof formResult.firstName !== "string") {
+      console.error("Invalid type for firstname:", typeof formResult.firstname);
+      return false;
+    }
+    if (typeof formResult.country !== "string") {
+      console.error("Invalid type for country:", typeof formResult.country);
+      return false;
+    }
+    if (typeof formResult.city !== "string") {
+      console.error("Invalid type for city:", typeof formResult.city);
+      return false;
+    }
+    if (typeof formResult.number !== "string") {
+      console.error("Invalid type for number:", typeof formResult.number);
+      return false;
+    }
+    if (typeof formResult.validationTextarea !== "string") {
+      console.error("Invalid type for validationTextarea:", typeof formResult.validationTextarea);
+      return false;
+    }
+    if (typeof formResult.mail !== "string") {
+      console.error("Invalid type for mail:", typeof formResult.mail);
+      return false;
+    }
+  
+    console.log("formResult type is valid");
+    return true;
   }
+
+  
   private checkCompany(): string {
-    if (typeof this._formdataContact.company === "string") {
+    if (typeof this._formdata.company === "string") {
       if (
-        this._formdataContact.company.length > 1 &&
-        this._formdataContact.company.length < 42
+        this._formdata.company.length > 1 &&
+        this._formdata.company.length < 42
       ) {
-        return this._formdataContact.company;
+        return this._formdata.company;
       } else {
         throw new Error(
           "Le nom de la société doit contenir entre 2 et 50 caractères."
@@ -46,13 +76,13 @@ export default class ContactService {
     }
   }
 
-  private checkLastname(): string {
-    if (typeof this._formdataContact.lastname === "string") {
+  private checkLastName(): string {
+    if (typeof this._formdata.lastName === "string") {
       if (
-        this._formdataContact.lastname.length > 1 &&
-        this._formdataContact.lastname.length < 42
+        this._formdata.lastName.length > 1 &&
+        this._formdata.lastName.length < 42
       ) {
-        return this._formdataContact.lastname;
+        return this._formdata.lastName;
       } else {
         throw new Error(
           "Le nom de famille doit contenir entre 2 et 50 caractères."
@@ -63,13 +93,13 @@ export default class ContactService {
     }
   }
 
-  private checkFirstname(): string {
-    if (typeof this._formdataContact.firstname === "string") {
+  private checkFirstName(): string {
+    if (typeof this._formdata.firstName === "string") {
       if (
-        this._formdataContact.firstname.length > 1 &&
-        this._formdataContact.firstname.length < 42
+        this._formdata.firstName.length > 1 &&
+        this._formdata.firstName.length < 42
       ) {
-        return this._formdataContact.firstname;
+        return this._formdata.firstName;
       } else {
         throw new Error("Le prénom doit contenir entre 2 et 50 caractères.");
       }
@@ -79,89 +109,59 @@ export default class ContactService {
   }
 
   private checkCountry(): string {
-    if (this._formdataContact.country === "France") {
-      return this._formdataContact.country;
+    if (this._formdata.country === "France") {
+      return this._formdata.country;
     } else {
       throw new Error("Error Country France");
     }
   }
   private checkCity(): string {
     if (
-      this._formdataContact.city === "Paris" ||
-      this._formdataContact.city === "Lyon" ||
-      this._formdataContact.city === "Marseille"
+      this._formdata.city === "Paris" ||
+      this._formdata.city === "Lyon" ||
+      this._formdata.city === "Marseille"
     ) {
-      return this._formdataContact.city;
+      return this._formdata.city;
     } else {
       throw new Error("Error City Paris or Lyon or Marseille");
     }
   }
-  private checkMail(): any {
-    if (typeof this._formdataContact.mail === "string") {
+  private checkMail(): string {
+    if (typeof this._formdata.mail === "string") {
       const mailRegex =
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (!mailRegex.test(this._formdataContact.mail)) {
+      if (!mailRegex.test(this._formdata.mail)) {
         throw new Error("Format mail non valide");
       } else {
-        return this._formdataContact.mail;
+        return this._formdata.mail;
       }
     } else {
       throw new Error("Error Mail");
     }
   }
-  private checkNumber(): any {
-    if (typeof this._formdataContact.number === "string") {
+  private checkNumber(): string {
+    if (typeof this._formdata.number === "string") {
       const phoneNumberRegex = /^0[0-9]{9}$/;
-      if (!phoneNumberRegex.test(this._formdataContact.number)) {
+      if (!phoneNumberRegex.test(this._formdata.number)) {
         throw new Error(
           "Le numéro de téléphone de la société doit commencer par 0 et contenir exactement 10 chiffres."
         );
       } else {
-        return this._formdataContact.number;
+        return this._formdata.number;
       }
     } else {
       throw new Error("Error Number");
     }
   }
-  private checkValidationTextarea(): any {
+  private checkValidationTextarea(): string {
     if (
-      typeof this._formdataContact.validationTextarea === "string" &&
-      this._formdataContact.validationTextarea !== ""
+      typeof this._formdata.validationTextarea === "string" &&
+      this._formdata.validationTextarea !== ""
     ) {
-      return this._formdataContact.validationTextarea;
+      return this._formdata.validationTextarea;
     } else {
       throw new Error("ValidationTextarea est vide ou n'est pas un string");
     }
   }
 
-  public validateForm() {
-    this._form
-      .querySelectorAll("input, select, textarea")
-      .forEach(
-        (field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
-          const name = field.name;
-
-          try {
-            this["check" + name.charAt(0).toUpperCase() + name.slice(1)]();
-            console.log(name + " c'est validé");
-            //field.classList.remove('is-invalid');
-            //field.classList.add('is-valid');
-          } catch (error) {
-            console.log(name + " c'est pas validé");
-            //field.classList.remove('is-valid');
-            //field.classList.add('is-invalid');
-            // TODO
-            //const errorElement = field.parentElement.querySelector('.invalid-feedback');
-            //if (errorElement) {
-            //  errorElement.textContent = error.message;
-            //}
-          }
-        }
-      );
-  }
-
-  public createContactForm(): void {
-    this._formresult = this._testData;
-    localStorage.setItem("contact", JSON.stringify(this._formresult));
-  }
 }

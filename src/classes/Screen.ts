@@ -2,7 +2,7 @@ import HeaderComponent from "../components/common/HeaderComponent";
 import Suggestion from "../components/common/SuggestionComponent";
 import FooterComponent from "../components/common/FooterComponent";
 
-export default class Screen extends HTMLElement {
+export default abstract class Screen extends HTMLElement {
 
     protected _props: any 
 

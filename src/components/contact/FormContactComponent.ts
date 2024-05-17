@@ -3,28 +3,38 @@ import ContactService from "../../services/Contact.Services";
 
 export default class FormContactComponent extends Components {
   private _formdataContact: any;
-  private _formContact: HTMLFormElement;
+  private _form: HTMLFormElement;
   private _contactService: ContactService;
+
   constructor() {
     super();
-    this._formContact = this.querySelector("form");
-    this._formContact.onsubmit = this.handleContactSubmit;
-    this._contactService = new ContactService(null, this._formContact);
+    this._form = this.querySelector("#contactForm");
+    this._form.onsubmit = this.handleContactSubmit;
+    this._contactService = new ContactService(null, "Contact", this._form);
   }
 
   handleContactSubmit = (e: SubmitEvent): void => {
     e.preventDefault();
-    let entries = Object.fromEntries(new FormData(this._formContact));
+    
+    console.log(this._form);
+
+    let entries = Object.fromEntries(new FormData(this._form));
     this._formdataContact = entries;
-    this._contactService.formdataContact = this._formdataContact;
+    this._contactService.formdata = this._formdataContact;
     this._contactService.validateForm();
-    //TODO if validateform true then make it to local storage else error message
-    this._contactService.createContactForm();
+
+    if (this._contactService.formIsValid) {
+      console.log("c'est bon");
+
+      this._contactService.create();
+    } else {
+      console.error("Reservation not good");
+    }
   };
   protected override render(): string {
     return `
     <div class="container">
-      <form>
+      <form novalidate id="contactForm">
         <fieldset desabled>
           <legend bg-primary>Formulaire de contact</legend>
           <div class="row">
@@ -40,8 +50,8 @@ export default class FormContactComponent extends Components {
               </div>
               <div class="col mb-3">
                 <input
-                  type="lastname"
-                  name="lastname"
+                  type="lastName"
+                  name="lastName"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Nom *"
@@ -49,8 +59,8 @@ export default class FormContactComponent extends Components {
               </div>
               <div class="col mb-3">
                 <input
-                  type="name"
-                  name="firstname"
+                  type="firstName"
+                  name="firstName"
                   id="disabledTextInput"
                   class="form-control"
                   placeholder="Prénom *"
