@@ -10,7 +10,7 @@ export default class FormReservation extends Components {
     super();
     this._form = this.querySelector("#reservationForm");
     this._form.onsubmit = this.handleReservationSubmit;
-    this._reservationService = new ReservationService(null, 'reservationForm', this._form);
+    this._reservationService = new ReservationService(null, 'reservation', this._form);
   }
 
   handleReservationSubmit = (e: SubmitEvent): void => {

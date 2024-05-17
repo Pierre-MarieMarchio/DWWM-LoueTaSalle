@@ -1,12 +1,121 @@
 import ReservationModel from "../models/ReservationModel";
-import FormBaseServices from "./FormBase.Services"
+import FormBaseServices from "./FormBase.Services";
 
 export default class ReservationService extends FormBaseServices<ReservationModel> {
+  constructor(formSubmit: any, keyItem: string, form: HTMLFormElement) {
+    super(formSubmit, keyItem, form);
+  }
 
+  protected validateFormResult(formResult: any): boolean {
+    console.log("Validating formResult...");
 
-  constructor(formSubmit: any, localItem: string, form: HTMLFormElement) {
-    super(formSubmit, localItem, form);
-  
+    if (typeof formResult.id !== "string") {
+      console.error("Invalid type for id: expected string, got", typeof formResult.id);
+      return false;
+    }
+
+    if (typeof formResult.lastName !== "string") {
+      console.error("Invalid type for lastName: expected string, got", typeof formResult.lastName);
+      return false;
+    }
+
+    if (typeof formResult.firstName !== "string") {
+      console.error("Invalid type for firstName: expected string, got", typeof formResult.firstName);
+      return false;
+    }
+
+    if (typeof formResult.email !== "string") {
+      console.error("Invalid type for email: expected string, got", typeof formResult.email);
+      return false;
+    }
+
+    if (typeof formResult.cellphone !== "string") {
+      console.error("Invalid type for cellphone: expected number, got", typeof formResult.cellphone);
+      return false;
+    }
+
+    if (typeof formResult.eventNature !== "string") {
+      console.error("Invalid type for eventNature: expected string, got", typeof formResult.eventNature);
+      return false;
+    }
+
+    if (!(formResult.eventDate instanceof Date)) {
+      console.error("Invalid type for eventDate: expected Date, got", typeof formResult.eventDate);
+      return false;
+    }
+
+    if (typeof formResult.eventHour !== "string") {
+      console.error("Invalid type for eventHour: expected string, got", typeof formResult.eventHour);
+      return false;
+    }
+
+    if (typeof formResult.eventDistrict !== "string") {
+      console.error("Invalid type for eventDistrict: expected string, got", typeof formResult.eventDistrict);
+      return false;
+    }
+
+    if (typeof formResult.eventPeople !== "number") {
+      console.error("Invalid type for eventPeople: expected number, got", typeof formResult.eventPeople);
+      return false;
+    }
+
+    if (typeof formResult.eventAgeAverage !== "string") {
+      console.error("Invalid type for eventAgeAverage: expected string, got", typeof formResult.eventAgeAverage);
+      return false;
+    }
+
+    if (typeof formResult.eventPreferredCity !== "string") {
+      console.error("Invalid type for eventPreferredCity: expected string, got", typeof formResult.eventPreferredCity);
+      return false;
+    }
+
+    if (typeof formResult.eventVenue !== "string") {
+      console.error("Invalid type for eventVenue: expected string, got", typeof formResult.eventVenue);
+      return false;
+    }
+
+    if (typeof formResult.eventType !== "string") {
+      console.error("Invalid type for eventType: expected string, got", typeof formResult.eventType);
+      return false;
+    }
+
+    if (typeof formResult.eventCaterer !== "string") {
+      console.error("Invalid type for eventCaterer: expected string, got", typeof formResult.eventCaterer);
+      return false;
+    }
+
+    if (typeof formResult.eventQuotation !== "string") {
+      console.error("Invalid type for eventQuotation: expected string, got", typeof formResult.eventQuotation);
+      return false;
+    }
+
+    if (typeof formResult.eventBudget !== "number") {
+      console.error("Invalid type for eventBudget: expected number, got", typeof formResult.eventBudget);
+      return false;
+    }
+
+    if (typeof formResult.eventAccomodation !== "string") {
+      console.error("Invalid type for eventAccomodation: expected string, got", typeof formResult.eventAccomodation);
+      return false;
+    }
+
+    if (typeof formResult.eventBedding !== "number") {
+      console.error("Invalid type for eventBedding: expected number, got", typeof formResult.eventBedding);
+      return false;
+    }
+
+    if (typeof formResult.eventDetails !== "string") {
+      console.error("Invalid type for eventDetails: expected string, got", typeof formResult.eventDetails);
+      return false;
+    }
+
+    if (typeof formResult.cguCheck !== "boolean") {
+      console.error("Invalid type for cguChecked: expected boolean, got", typeof formResult.cguChecked);
+      return false;
+    }
+
+    console.log("formResult type is valid");
+    return true;
   }
 
   private checkLastName(): string {
@@ -110,8 +219,7 @@ export default class ReservationService extends FormBaseServices<ReservationMode
         throw new Error("L'heure de l'évènement n'est pas indiquée.");
       }
       return this._formdata.eventHour;
-    }
-    else {
+    } else {
       throw new Error("L'heure de l'évènement n'est pas un string.");
     }
   }
@@ -129,8 +237,7 @@ export default class ReservationService extends FormBaseServices<ReservationMode
     }
   }
 
-  private checkEventPeople(): string {
-
+  private checkEventPeople(): number {
     function testEventPeople(eventPeople: string) {
       var re = /^\d+$/;
       return re.test(eventPeople);
@@ -140,7 +247,7 @@ export default class ReservationService extends FormBaseServices<ReservationMode
       if (testEventPeople(this._formdata.eventPeople)) {
         const eventPeopleInt = parseInt(this._formdata.eventPeople);
         if (eventPeopleInt > 0) {
-          return this._formdata.eventPeople;
+          return eventPeopleInt;
         } else {
           throw new Error("Le nombre de participant n'est pas supérieur à 0.");
         }
@@ -153,7 +260,6 @@ export default class ReservationService extends FormBaseServices<ReservationMode
   }
 
   private checkEventAgeAverage(): string {
-
     if (typeof this._formdata.eventAgeAverage === "string") {
       const eventAgeAvrageInt = parseInt(this._formdata.eventAgeAverage);
       if (eventAgeAvrageInt > 0 && eventAgeAvrageInt < 9) {
@@ -167,7 +273,6 @@ export default class ReservationService extends FormBaseServices<ReservationMode
   }
 
   private checkEventPreferredCity(): string {
-
     function testEventPreferredCity(eventPreferredCity: string) {
       var re = /^[a-zA-ZÀ-ÿ\-'. ]+(?: \d{5})?$/;
       return re.test(eventPreferredCity);
@@ -235,11 +340,11 @@ export default class ReservationService extends FormBaseServices<ReservationMode
     }
   }
 
-  private checkEventBudget(): string {
+  private checkEventBudget(): number {
     if (typeof this._formdata.eventBudget === "string") {
       const eventBudgetInt = parseInt(this._formdata.eventBudget);
       if (eventBudgetInt > 0) {
-        return this._formdata.eventBudget;
+        return eventBudgetInt;
       } else {
         throw new Error("Le budget de l'évènement n'est pas rempli.");
       }
@@ -261,11 +366,11 @@ export default class ReservationService extends FormBaseServices<ReservationMode
     }
   }
 
-  private checkEventBedding(): string {
+  private checkEventBedding(): number {
     if (typeof this._formdata.eventBedding === "string") {
       const eventBeddingInt = parseInt(this._formdata.eventBedding);
       if (eventBeddingInt >= 0) {
-        return this._formdata.eventBedding;
+        return eventBeddingInt;
       } else {
         throw new Error("Le nombre de couchages de l'évènement n'est pas rempli.");
       }
@@ -282,18 +387,15 @@ export default class ReservationService extends FormBaseServices<ReservationMode
     }
   }
 
-  private checkCguCheck(): string {
-    if (typeof this._formdata.cguCheck === "string") {
-      const cguCheck = Boolean(this._formdata.cguCheck);
-      if (this._formdata.cguCheck) {
-        return this._formdata.cguCheck;
-      } else {
-        throw new Error("Les CGU ne sont pas cochés.");
-      }
+  private checkCguCheck(): boolean {
+    const cguChecked = this._formdata.cguCheck;
+  
+    if (cguChecked === "on") {
+     
+      return true;
     } else {
-      throw new Error("Les CGU n'est pas un boolean.");
+     
+      throw new Error("Les CGU ne sont pas cochés.");
     }
   }
-
-  
 }
